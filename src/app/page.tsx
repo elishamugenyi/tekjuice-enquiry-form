@@ -132,16 +132,8 @@ export default function Enquiry() {
             updatedKnowUs.push(otherKnowUs.trim()); // Add the "Other" input value
         }
 
-        //convert service array to object for submission
-        const serviceObject = formData.services.reduce((acc, service) => {
-            acc[service.toLowerCase()] = service; //covert to object{}
-            return acc;
-        }, {} as { [key: string]: string });
-        //convert preferred contact array to object
-        //convert heard about us array to object
-
         try {
-            const res = await fetch("/api/influencers", {
+            const res = await fetch("/api/enquiry", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -236,6 +228,9 @@ export default function Enquiry() {
   
           {/* Right Side: Form */}
           <div className="w-1/2 p-8">
+          {success ? (
+                <p className="text-green-600 font-bold text-center">✅ Sign-up successful! We’ll contact you soon. Reload page to submit another enquiry.</p>
+            ) : (
             <form onSubmit={handleSubmit} className="space-y-6">
                 {/* Name */}
                 <div>
@@ -455,6 +450,7 @@ export default function Enquiry() {
                     </button>
                 </div>
             </form>
+            )}
           </div>
         </div>
       </div>
