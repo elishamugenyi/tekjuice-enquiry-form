@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Navbar from "@/app/components/navbar";
 import Link from 'next/link';
 
 export default function LoginPage() {
@@ -50,6 +51,7 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-white">
+      <Navbar />
       <div className="flex-grow flex items-center justify-center p-4 sm:p-6">
         <div className="bg-white p-6 sm:p-8 rounded-lg shadow-[0_0_20px_rgba(0,0,0,0.3)] w-full max-w-md">
           <h1 className="text-xl sm:text-2xl font-bold text-gray-800 text-center mb-6">

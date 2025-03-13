@@ -167,66 +167,57 @@ export default function Enquiry() {
         <Navbar />
         <div className="max-w-6xl w-full bg-white shadow-lg rounded-lg overflow-hidden flex">
           {/* Left Side: Text Content */}
-          <div className="w-1/2 p-8 bg-white text-black">
+            <div className="w-1/2 p-8 bg-white text-black">
             <h1 className="text-3xl text-[#F6931B] font-bold mb-4">Tek Juice Enquiry Form</h1>
-            <p className="mb-4">
-              <strong>Welcome to Tek Juice!</strong><br /> 
-              We create opportunities through technology 
-              by <strong>offering strategic consultancy and talent solutions</strong> that 
-              empower businesses to scale efficiently.
+            <p className="mb-4 leading-relaxed">
+                <strong>Welcome to Tek Juice!</strong>
+                <br />
+                We create opportunities through technology by{' '}
+                <strong>offering strategic consultancy and talent solutions</strong> that empower businesses to scale efficiently.
             </p>
             <h2 className="text-xl text-[#F6931B] font-semibold mb-2">Our Services:</h2>
-            <ul className="list-disc list-inside mb-4">
-              <li>
-                <strong>Tek Talent Africa</strong>
-                 – A premier platform connecting global businesses
-                with top African tech talent. We source, vet, and 
-                place skilled professionals through our African 
-                offices, ensuring world-class quality and global 
+            <ul className="list-disc list-inside mb-4 leading-relaxed">
+                <li className="mb-2">
+                <strong>Tek Talent Africa</strong> – A premier platform connecting global businesses with top African tech talent. We
+                source, vet, and place skilled professionals through our African offices, ensuring world-class quality and global
                 readiness.
-              </li>
-              <li>
-                <strong>Outsourcing Tech Teams</strong>
-                 – We help companies <strong>build, manage, and scale 
-                 remote tech teams</strong> by providing <strong>dedicated 
-                 developers, engineers, and IT specialists</strong> 
-                 tailored to your business needs. Whether 
-                 you need a full tech team or specific expertise, 
-                 we handle recruitment, onboarding, and management 
-                 to ensure seamless operations.
-
-              </li>
-              <li>
-                <strong>Managed Support Services</strong>
-                 – We offer <strong>ongoing technical and IT support</strong>
-                to help businesses maintain their digital 
-                infrastructure.
-                Our <strong>managed support</strong> includes <strong>system monitoring, 
-                troubleshooting, software updates, cybersecurity, 
-                and round-the-clock technical assistance</strong>, ensuring 
-                business continuity and efficiency.
-
-              </li>
+                </li>
+                <li className="mb-2">
+                <strong>Outsourcing Tech Teams</strong> – We help companies{' '}
+                <strong>build, manage, and scale remote tech teams</strong> by providing{' '}
+                <strong>dedicated developers, engineers, and IT specialists</strong> tailored to your business needs. Whether you
+                need a full tech team or specific expertise, we handle recruitment, onboarding, and management to ensure seamless
+                operations.
+                </li>
+                <li className="mb-2">
+                <strong>Managed Support Services</strong> – We offer{' '}
+                <strong>ongoing technical and IT support</strong> to help businesses maintain their digital infrastructure. Our{' '}
+                <strong>managed support</strong> includes{' '}
+                <strong>
+                    system monitoring, troubleshooting, software updates, cybersecurity, and round-the-clock technical assistance
+                </strong>
+                , ensuring business continuity and efficiency.
+                </li>
             </ul>
-            <p className="mb-4">
-              Submit your enquiry, and our team will get back to you within 24-48 hours!
+            <p className="mb-4 leading-relaxed">
+                Submit your enquiry, and our team will get back to you within 24-48 hours!
             </p>
-            <p>
-              For more information, visit us at:{' '}
-              <a href="[Website URL]" className="underline">
+            <p className="mb-4 leading-relaxed">
+                For more information, visit us at:{' '}
+                <a href="[Website URL]" className="underline">
                 [Website URL]
-              </a>
+                </a>
             </p>
-            <p>
-              Email us at:{' '}
-              <a href="mailto:tekjuicedigitalmarketing@gmail.com" className="underline">
+            <p className="mb-4 leading-relaxed">
+                Email us at:{' '}
+                <a href="mailto:tekjuicedigitalmarketing@gmail.com" className="underline">
                 tekjuicedigitalmarketing@gmail.com
-              </a>
+                </a>
             </p>
-            <p>
-              Call us at: <span className="underline">+44 7974 810717</span>
+            <p className="leading-relaxed">
+                Call us at: <span className="underline">+44 7974 810717</span>
             </p>
-          </div>
+            </div>
   
           {/* Right Side: Form */}
           <div className="w-1/2 p-8">

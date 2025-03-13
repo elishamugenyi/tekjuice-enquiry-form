@@ -4,6 +4,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import SkeletonLoader from '@/app/components/skeletonLoader';
+import Navbar from "@/app/components/navbar";
 
 
 
@@ -100,14 +101,6 @@ const Dashboard = () => {
       .catch(() => setError('An error occurred while fetching data.'))
       .finally(() => setLoading(false));
   };
-
-  // Handle tab change
-  /*const handleTabChange = (tab: "brands" | "influencers") => {
-    setActiveTab(tab);
-    setSearchQuery("");
-    setPage(1);
-    fetchData(); // Fetch data for the selected tab
-  };*/
 
   //fetch all data for search 
   const fetchAllDataForSearch = async() => {
@@ -224,8 +217,9 @@ const Dashboard = () => {
 
   return (
     <div className="w-full text-gray-700 bg-white p-4 sm:p-6">
+      <Navbar />
     {/* Header */}
-    <header className="flex flex-col sm:flex-row justify-between items-center bg-gray-800 text-white p-4 mb-4 rounded-lg">
+    <header className="flex flex-col sm:flex-row justify-between items-center bg-[#F6931B] text-white p-4 mb-4 rounded-lg">
       <h1 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-0">Admin Dashboard</h1>
       <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 w-full sm:w-auto">
         <input
@@ -237,7 +231,7 @@ const Dashboard = () => {
         />
         <button
           onClick={handleLogout}
-          className="bg-red-500 px-4 py-2 rounded hover:bg-red-700 text-sm sm:text-base"
+          className="bg-black px-4 py-2 rounded hover:bg-red-900 text-sm sm:text-base"
         >
           Logout
         </button>
