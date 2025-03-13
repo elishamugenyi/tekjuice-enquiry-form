@@ -2,12 +2,14 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -88,14 +90,29 @@ export default function LoginPage() {
               />
             </div>
             <button
-              type="submit"
-              className="w-full bg-gold text-black py-2 rounded hover:bg-brown text-sm sm:text-base"
-            >
-              Login
+                type="submit"
+                disabled={loading}
+                className="w-full bg-[#F6931B] text-black 
+                px-4 py-2 rounded-md hover:bg-black 
+                hover:text-[#F6931B] focus:outline-none 
+                focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                >
+                {loading ? "Logging in..." : "Login"}
             </button>
           </form>
+          {/* "Return To Home" Link */}
+          <Link
+            href="/" // Replace with the path to your home page (enquiry form page)
+            className="w-full mt-4 flex items-center justify-center bg-[#F6931B] text-black 
+                       px-4 py-2 rounded-md hover:bg-black hover:text-[#F6931B] 
+                       focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+          >
+            Return To Home
+          </Link>
         </div>
+        
       </div>
+
     </div>
   );
 }

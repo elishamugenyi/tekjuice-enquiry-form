@@ -444,10 +444,14 @@ export default function Enquiry() {
                 <div>
                     <button
                         type="submit"
-                        className="w-full bg-[#F6931B] text-black px-4 py-2 rounded-md hover:bg-black hover:text-[#F6931B] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-                    >
-                        Submit Enquiry
-                    </button>
+                        disabled={loading}
+                        className="w-full bg-[#F6931B] text-black 
+                        px-4 py-2 rounded-md hover:bg-black 
+                        hover:text-[#F6931B] focus:outline-none 
+                        focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                      >
+                        {loading ? "Submitting..." : "Submit"}
+                      </button>
                 </div>
             </form>
             )}
