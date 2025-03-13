@@ -3,6 +3,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Navbar from "@/app/components/navbar";
 import Image from "next/image";
   
 
@@ -162,7 +163,8 @@ export default function Enquiry() {
     };
 
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-100 p-8">
+      <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-8">
+        <Navbar />
         <div className="max-w-6xl w-full bg-white shadow-lg rounded-lg overflow-hidden flex">
           {/* Left Side: Text Content */}
           <div className="w-1/2 p-8 bg-white text-black">
@@ -229,7 +231,7 @@ export default function Enquiry() {
           {/* Right Side: Form */}
           <div className="w-1/2 p-8">
           {success ? (
-                <p className="text-green-600 font-bold text-center">✅ Sign-up successful! We’ll contact you soon. Reload page to submit another enquiry.</p>
+                <p className="text-green-600 font-bold text-center">✅ Your Details have been submitted! We’ll contact you soon. Reload page to submit another enquiry.</p>
             ) : (
             <form onSubmit={handleSubmit} className="space-y-6">
                 {/* Name */}

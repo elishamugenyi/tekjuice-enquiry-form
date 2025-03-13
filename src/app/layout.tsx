@@ -1,20 +1,16 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Open_Sans } from "next/font/google"; // Import Open Sans
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+// Load Open Sans font
+const openSans = Open_Sans({
+  subsets: ["latin"], // Specify the subset(s) you want to load
+  variable: "--font-open-sans", // Define a CSS variable for the font
 });
 
 export const metadata: Metadata = {
   title: "TekJuice Enquiry Form",
-  description: "Submit Enquries Through This Form. created by Elisha M.",
+  description: "Submit Enquiries Through This Form. Created by Elisha M.",
 };
 
 export default function RootLayout({
@@ -25,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${openSans.variable} font-sans antialiased`} // Apply Open Sans and sans-serif fallback
       >
         {children}
       </body>
