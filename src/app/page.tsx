@@ -4,6 +4,7 @@
 
 import { useEffect, useState } from "react";
 import Navbar from "@/app/components/navbar";
+import Footer from "@/app/components/footer";
 import Image from "next/image";
   
 
@@ -97,7 +98,7 @@ export default function Enquiry() {
     const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value, checked } = e.target;
         // Restrict `name` to only the keys that are arrays
-        if (name === "services" || name === "preferred_contact" || name === "know_us") {
+        if (name === "services" || name === "preferred_contact") {
             setFormData((prevState) => {
                 const currentArray = prevState[name]; // No need for type assertion now
                 return {
@@ -163,42 +164,90 @@ export default function Enquiry() {
     };
 
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-8">
+      <div className="min-h-screen flex flex-col items-center justify-center bg-[#F9FAFB] pt-20">
         <Navbar />
-        <div className="max-w-6xl w-full bg-white shadow-lg rounded-lg overflow-hidden flex">
+        <div className=" flex-grow max-w-6xl w-full rounded-lg overflow-hidden flex my-8 mx-auto">
           {/* Left Side: Text Content */}
-            <div className="w-1/2 p-8 bg-white text-black">
-            <h1 className="text-3xl text-[#F6931B] font-bold mb-4">Tek Juice Enquiry Form</h1>
+            <div className="w-1/2 p-8 bg-[#F9FAFB] text-black">
+            <h1 className="text-3xl text-[#F6931B] font-bold mb-4">Welcome to Tek Juice!</h1>
             <p className="mb-4 leading-relaxed">
-                <strong>Welcome to Tek Juice!</strong>
-                <br />
                 We create opportunities through technology by{' '}
                 <strong>offering strategic consultancy and talent solutions</strong> that empower businesses to scale efficiently.
             </p>
             <h2 className="text-xl text-[#F6931B] font-semibold mb-2">Our Services:</h2>
-            <ul className="list-disc list-inside mb-4 leading-relaxed">
-                <li className="mb-2">
-                <strong>Tek Talent Africa</strong> – A premier platform connecting global businesses with top African tech talent. We
-                source, vet, and place skilled professionals through our African offices, ensuring world-class quality and global
-                readiness.
+            <ul className="list-none mb-4 leading-relaxed">
+                {/* Tek Talent Africa */}
+                <li className="mb-4">
+                <div className="flex items-start">
+                    <span className="text-[#F6931B] mr-2">
+                        <Image 
+                            src="/talent.svg" // Icon path in public folder at the root
+                            alt="Talent Icon"
+                            width={100}
+                            height={100}
+                            className="text-white"
+                        />
+                    </span> {/* Icon */}
+                    <div>
+                    <h3 className="text-lg text-[#F6931B] font-semibold mb-1">Tek Talent Africa</h3>
+                    <p className="ml-6">
+                        A premier platform connecting global businesses with top African tech talent. We source, vet, and place skilled professionals through our African offices, ensuring world-class quality and global readiness.
+                    </p>
+                    </div>
+                </div>
                 </li>
-                <li className="mb-2">
-                <strong>Outsourcing Tech Teams</strong> – We help companies{' '}
-                <strong>build, manage, and scale remote tech teams</strong> by providing{' '}
-                <strong>dedicated developers, engineers, and IT specialists</strong> tailored to your business needs. Whether you
-                need a full tech team or specific expertise, we handle recruitment, onboarding, and management to ensure seamless
-                operations.
+
+                {/* Outsourcing Tech Teams */}
+                <li className="mb-4">
+                <div className="flex items-start">
+                    <span className="text-[#F6931B] mr-2">
+                        <Image 
+                            src="/outsourcing.svg" // Icon Path
+                            alt="Outsourcing Icon"
+                            width={100}
+                            height={100}
+                            className="text-white"
+                        />
+                    </span> {/* Icon */}
+                    <div>
+                    <h3 className="text-lg text-[#F6931B] font-semibold mb-1">Outsourcing Tech Teams</h3>
+                    <p className="ml-6">
+                        We help companies{' '}
+                        <strong>build, manage, and scale remote tech teams</strong> by providing{' '}
+                        <strong>dedicated developers, engineers, and IT specialists</strong> tailored to your business needs. Whether you need a full tech team or specific expertise, we handle recruitment, onboarding, and management to ensure seamless operations.
+                    </p>
+                    </div>
+                </div>
                 </li>
-                <li className="mb-2">
-                <strong>Managed Support Services</strong> – We offer{' '}
-                <strong>ongoing technical and IT support</strong> to help businesses maintain their digital infrastructure. Our{' '}
-                <strong>managed support</strong> includes{' '}
-                <strong>
-                    system monitoring, troubleshooting, software updates, cybersecurity, and round-the-clock technical assistance
-                </strong>
-                , ensuring business continuity and efficiency.
+
+                {/* Managed Support Services */}
+                <li className="mb-4">
+                <div className="flex items-start">
+                    <span className="text-[#F6931B] mr-2">
+                        <Image 
+                            src="/support.svg" // Icon Path
+                            alt="Support Icon"
+                            width={100}
+                            height={100}
+                            className="text-white"
+                        />
+                    </span> {/* Icon */}
+                    <div>
+                    <h3 className="text-lg text-[#F6931B] font-semibold mb-1">Managed Support Services</h3>
+                    <p className="ml-6">
+                        We offer{' '}
+                        <strong>ongoing technical and IT support</strong> to help businesses maintain their digital infrastructure. Our{' '}
+                        <strong>managed support</strong> includes{' '}
+                        <strong>
+                        system monitoring, troubleshooting, software updates, cybersecurity, and round-the-clock technical assistance
+                        </strong>
+                        , ensuring business continuity and efficiency.
+                    </p>
+                    </div>
+                </div>
                 </li>
             </ul>
+
             <p className="mb-4 leading-relaxed">
                 Submit your enquiry, and our team will get back to you within 24-48 hours!
             </p>
@@ -220,7 +269,8 @@ export default function Enquiry() {
             </div>
   
           {/* Right Side: Form */}
-          <div className="w-1/2 p-8">
+          <div className="w-1/2 p-8 mb-5 bg-white shadow-[0_0_20px_rgba(0,0,0,0.3)]">
+          <h2 className="text-3xl text-black font-bold mb-4 ml-30">Get In Touch</h2>
           {success ? (
                 <p className="text-green-600 font-bold text-center">✅ Your Details have been submitted! We’ll contact you soon. Reload page to submit another enquiry.</p>
             ) : (
@@ -325,7 +375,7 @@ export default function Enquiry() {
                         { name:"services", value: "Outsourcing part or all of your Tech team",label:"Outsourcing part or all of your Tech team"},
                         { name:"services",value: "Other", label:"Other (Please Specify)"}
                         ].map((option) => (
-                        <label key={option.value} className="flex items-center space-x-3 p-3 border border-[#E2E8F0] rounded-lg hover:bg-[#F7FAFC]">
+                        <label key={option.value} className="flex items-center space-x-3 p-1 rounded-lg hover:bg-[#F7FAFC]">
                             <input
                             type="checkbox"
                             name={option.name}
@@ -380,14 +430,14 @@ export default function Enquiry() {
                             { name: "preferred_contact", value: "Phone", label: "Phone" },
                             { name: "preferred_contact", value: "WhatsApp", label: "WhatsApp" }
                         ].map((option) => (
-                            <label key={option.value} className="flex items-center space-x-3 p-3 border border-[#E2E8F0] rounded-lg hover:bg-[#F7FAFC]">
+                            <label key={option.value} className="flex items-center space-x-3 p-2 rounded-lg hover:bg-[#F7FAFC]">
                                 <input
                                     type="checkbox"
                                     name={option.name}
                                     value={option.value}
                                     onChange={handleCheckboxChange}
                                     checked={formData.preferred_contact.includes(option.value)}
-                                    className="form-checkbox h-5 w-5 text-[#3182CE] rounded focus:ring-[#3182CE]"
+                                    className="form-checkbox h-5 w-5 text-[#3182CE] rounded-full checked:bg-[#3182CE] checked:border-transparent focus:ring-[#3182CE] focus:ring-2"
                                 />
                                 <span className="text-[#4A5568] text-sm md:text-base">{option.label}</span>
                             </label>
@@ -400,37 +450,40 @@ export default function Enquiry() {
                     <label className="block text-sm font-medium text-black">
                         How did you hear about Tek Juice?
                     </label>
-                    <div className="mt-2 flex flex-col gap-4">
-                        {[
-                            { name: "know_us", value: "Social media", label: "Social media" },
-                            { name: "know_us", value: "Website", label: "Website" },
-                            { name: "know_us", value: "Referral", label: "Referral" },
-                            { name: "know_us", value: "Others", label: "Other (Please Specify)" },
-                        ].map((option) => (
-                            <label key={option.value} className="flex items-center space-x-3 p-3 border border-[#E2E8F0] rounded-lg hover:bg-[#F7FAFC]">
-                                <input
-                                    type="checkbox"
-                                    name={option.name}
-                                    value={option.value}
-                                    onChange={handleCheckboxChange}
-                                    checked={formData.know_us.includes(option.value)}
-                                    className="form-checkbox h-5 w-5 text-[#3182CE] rounded focus:ring-[#3182CE]"
-                                />
-                                <span className="text-[#4A5568] text-sm md:text-base">{option.label}</span>
-                            </label>
-                        ))}
-                        {formData.know_us.includes("Others") && (
-                            <div className="mt-2">
-                                <input
-                                    type="text"
-                                    value={otherKnowUs}
-                                    onChange={(e) => setOtherKnowUs(e.target.value)}
-                                    className="w-full px-3 py-2 text-gray-600 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                                    placeholder="Specify"
-                                />
-                            </div>
-                        )}
+                    <div className="mt-2">
+                        <select
+                        name="know_us"
+                        value={formData.know_us[0] || ""} // Use the first value if it exists
+                        onChange={(e) => {
+                            const selectedValue = e.target.value;
+                            setFormData((prevState) => ({
+                            ...prevState,
+                            know_us: [selectedValue], // Store the selected value in an array
+                            }));
+                            if (selectedValue === "Others") {
+                            setOtherKnowUs(""); // Reset the "Other" input when "Others" is selected
+                            }
+                        }}
+                        className="w-full px-3 py-2 text-gray-600 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                        >
+                        <option value="">Select an option</option>
+                        <option value="Social media">Social media</option>
+                        <option value="Website">Website</option>
+                        <option value="Referral">Referral</option>
+                        <option value="Others">Other (Please Specify)</option>
+                        </select>
                     </div>
+                    {formData.know_us.includes("Others") && (
+                        <div className="mt-2">
+                            <input
+                                type="text"
+                                value={otherKnowUs}
+                                onChange={(e) => setOtherKnowUs(e.target.value)}
+                                className="w-full px-3 py-2 text-gray-600 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                                placeholder="Specify"
+                            />
+                        </div>
+                    )}
                 </div>
 
                 {/* Submit Button */}
@@ -450,6 +503,7 @@ export default function Enquiry() {
             )}
           </div>
         </div>
+        <Footer />
       </div>
     );
 }

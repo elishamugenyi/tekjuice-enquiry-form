@@ -4,7 +4,6 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import SkeletonLoader from '@/app/components/skeletonLoader';
-import Navbar from "@/app/components/navbar";
 
 
 
@@ -217,7 +216,7 @@ const Dashboard = () => {
 
   return (
     <div className="w-full text-gray-700 bg-white p-4 sm:p-6">
-      <Navbar />
+     
     {/* Header */}
     <header className="flex flex-col sm:flex-row justify-between items-center bg-[#F6931B] text-white p-4 mb-4 rounded-lg">
       <h1 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-0">Admin Dashboard</h1>
