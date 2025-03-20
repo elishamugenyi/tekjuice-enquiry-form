@@ -169,10 +169,11 @@ export default function Enquiry() {
         <div className=" flex-grow max-w-6xl w-full rounded-lg overflow-hidden flex my-8 mx-auto">
           {/* Left Side: Text Content */}
             <div className="w-1/2 p-8 bg-[#F9FAFB] text-black">
-            <h1 className="text-3xl text-[#F6931B] font-bold mb-4">Welcome to Tek Juice!</h1>
+            <h1 className="text-3xl text-[#F6931B] font-bold mb-8">Welcome to Tek Juice!</h1>
             <p className="mb-4 leading-relaxed">
                 We create opportunities through technology by{' '}
-                <strong>offering strategic consultancy and talent solutions</strong> that empower businesses to scale efficiently.
+                offering strategic consultancy and talent solutions 
+                that empower businesses to scale efficiently.
             </p>
             <h2 className="text-xl text-[#F6931B] font-semibold mb-2">Our Services:</h2>
             <ul className="list-none mb-4 leading-relaxed">
@@ -191,7 +192,9 @@ export default function Enquiry() {
                     <div>
                     <h3 className="text-lg text-[#F6931B] font-semibold mb-1">Tek Talent Africa</h3>
                     <p className="ml-6">
-                        A premier platform connecting global businesses with top African tech talent. We source, vet, and place skilled professionals through our African offices, ensuring world-class quality and global readiness.
+                        A premier platform connecting global businesses with top African tech talent. 
+                        We source, vet, and place skilled professionals through our African offices, 
+                        ensuring world-class quality and global readiness.
                     </p>
                     </div>
                 </div>
@@ -213,8 +216,11 @@ export default function Enquiry() {
                     <h3 className="text-lg text-[#F6931B] font-semibold mb-1">Outsourcing Tech Teams</h3>
                     <p className="ml-6">
                         We help companies{' '}
-                        <strong>build, manage, and scale remote tech teams</strong> by providing{' '}
-                        <strong>dedicated developers, engineers, and IT specialists</strong> tailored to your business needs. Whether you need a full tech team or specific expertise, we handle recruitment, onboarding, and management to ensure seamless operations.
+                        build, manage, and scale remote tech teams by providing{' '}
+                        dedicated developers, engineers, and IT specialists tailored 
+                        to your business needs. Whether you need a full tech team or specific 
+                        expertise, we handle recruitment, onboarding, and management to ensure 
+                        seamless operations.
                     </p>
                     </div>
                 </div>
@@ -236,11 +242,11 @@ export default function Enquiry() {
                     <h3 className="text-lg text-[#F6931B] font-semibold mb-1">Managed Support Services</h3>
                     <p className="ml-6">
                         We offer{' '}
-                        <strong>ongoing technical and IT support</strong> to help businesses maintain their digital infrastructure. Our{' '}
-                        <strong>managed support</strong> includes{' '}
-                        <strong>
+                        ongoing technical and IT support to help businesses maintain their digital infrastructure. Our{' '}
+                        managed support includes{' '}
+                        
                         system monitoring, troubleshooting, software updates, cybersecurity, and round-the-clock technical assistance
-                        </strong>
+                        
                         , ensuring business continuity and efficiency.
                     </p>
                     </div>
@@ -269,7 +275,7 @@ export default function Enquiry() {
             </div>
   
           {/* Right Side: Form */}
-          <div className="w-1/2 p-8 mb-5 bg-white shadow-[0_0_20px_rgba(0,0,0,0.3)]">
+          <div className="w-1/2 p-8 mb-5 mt-4 bg-white">
           <h2 className="text-3xl text-black font-bold mb-4 ml-30">Get In Touch</h2>
           {success ? (
                 <p className="text-green-600 font-bold text-center">✅ Your Details have been submitted! We’ll contact you soon. Reload page to submit another enquiry.</p>
@@ -285,7 +291,7 @@ export default function Enquiry() {
                         name="name"
                         placeholder="Enter Your full name"
                         onChange={handleChange}
-                        className="mt-1 block w-full px-3 py-2 border border-gray-300 text-gray-500 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                        className="mt-1 block w-full px-3 py-2 border border-gray-300 text-black rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                         required
                     />
                 </div>
@@ -300,7 +306,7 @@ export default function Enquiry() {
                         name="company"
                         placeholder="Enter Company Name."
                         onChange={handleChange}
-                        className="mt-1 block w-full px-3 py-2 text-gray-500 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                        className="mt-1 block w-full px-3 py-2 text-black border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
                     />
                 </div>
 
@@ -314,7 +320,7 @@ export default function Enquiry() {
                         name="email"
                         placeholder="Enter Your Email"
                         onChange={handleChange}
-                        className="mt-1 block w-full px-3 py-2 text-gray-500 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                        className="mt-1 block w-full px-3 py-2 text-black border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
                         required
                     />
                 </div>
@@ -345,7 +351,7 @@ export default function Enquiry() {
                             placeholder="757xxxxxx"
                             value={formData.contact}
                             onChange={handleChange}
-                            className="flex-1 p-3 border border-[#E2E8F0] rounded-lg placeholder-[#A0AEC0] text-[#1A1A1A] focus:ring-2 focus:ring-[#3182CE] focus:border-transparent"
+                            className="flex-1 p-3 border border-[#E2E8F0] rounded-lg placeholder-[#A0AEC0] text-black focus:ring-2 focus:ring-[#3182CE] focus:border-transparent"
                             required
                         />
                     </div>
@@ -361,14 +367,14 @@ export default function Enquiry() {
                         name="location"
                         placeholder="Enter Your Location."
                         onChange={handleChange}
-                        className="mt-1 block w-full px-3 py-2 text-gray-500 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                        className="mt-1 block w-full px-3 py-2 text-black border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
                         required
                     />
                 </div>
 
                 {/* Services */}
                 <div>
-                    <label className="block text-sm font-medium text-[#4A5568] mb-4">What services are you interested in? (Select all that apply)</label>
+                    <label className="block text-sm font-medium text-black mb-4">What services are you interested in? (Select all that apply)</label>
                     <div className="flex flex-col gap-4">
                         {[
                         { name: "services", value:"Hiring vetted African tech talent (Tek Talent)", label:"Hiring vetted African tech talent (Tek Talent)"},
@@ -382,9 +388,9 @@ export default function Enquiry() {
                             value={option.value}
                             onChange={handleCheckboxChange}
                             checked={formData.services.includes(option.value)}
-                            className="form-checkbox h-5 w-5 text-[#3182CE] rounded focus:ring-[#3182CE]"
+                            className="form-checkbox h-5 w-5 rounded focus:ring-[#3182CE]"
                             />
-                            <span className="text-[#4A5568] text-sm md:text-base">{option.label}</span>
+                            <span className="text-black text-sm md:text-base">{option.label}</span>
                         </label>
                         
                         ))}
@@ -394,7 +400,7 @@ export default function Enquiry() {
                                     type="text"
                                     value={otherService}
                                     onChange={(e) => setOtherService(e.target.value)}
-                                    className="w-full px-3 py-2 text-gray-600 border 
+                                    className="w-full px-3 py-2 text-black border 
                                     border-gray-300 rounded-md shadow-sm 
                                     focus:ring-blue-500 focus:border-blue-500"
                                     placeholder="Specify other services"
@@ -415,7 +421,7 @@ export default function Enquiry() {
                         value={formData.about_you}
                         onChange={handleChange}
                         rows={4}
-                        className="mt-1 block w-full px-3 py-2 text-gray-500 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                        className="mt-1 block w-full px-3 py-2 text-black border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
                     ></textarea>
                 </div>
 
@@ -439,7 +445,7 @@ export default function Enquiry() {
                                     checked={formData.preferred_contact.includes(option.value)}
                                     className="form-checkbox h-5 w-5 text-[#3182CE] rounded-full checked:bg-[#3182CE] checked:border-transparent focus:ring-[#3182CE] focus:ring-2"
                                 />
-                                <span className="text-[#4A5568] text-sm md:text-base">{option.label}</span>
+                                <span className="text-black text-sm md:text-base">{option.label}</span>
                             </label>
                         ))}
                     </div>
@@ -464,7 +470,7 @@ export default function Enquiry() {
                             setOtherKnowUs(""); // Reset the "Other" input when "Others" is selected
                             }
                         }}
-                        className="w-full px-3 py-2 text-gray-600 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                        className="w-full px-3 py-2 text-black border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                         >
                         <option value="">Select an option</option>
                         <option value="Social media">Social media</option>
@@ -479,7 +485,7 @@ export default function Enquiry() {
                                 type="text"
                                 value={otherKnowUs}
                                 onChange={(e) => setOtherKnowUs(e.target.value)}
-                                className="w-full px-3 py-2 text-gray-600 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                                className="w-full px-3 py-2 text-black border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                                 placeholder="Specify"
                             />
                         </div>
