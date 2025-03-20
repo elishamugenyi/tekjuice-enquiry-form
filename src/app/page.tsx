@@ -6,6 +6,9 @@ import { useEffect, useState } from "react";
 import Navbar from "@/app/components/navbar";
 import Footer from "@/app/components/footer";
 import Image from "next/image";
+//import { allCountries } from 'country-telephone-data';
+import PhoneInput, { Value } from 'react-phone-number-input';
+import 'react-phone-number-input/style.css';
   
 
 export default function Enquiry() {
@@ -53,7 +56,7 @@ export default function Enquiry() {
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Basic email format validation
         return regex.test(email);
     }
-    //validate country dial codes
+    /*validate country dial codes
     const countryDialCodes = [
         {code: "+1", name:"USA", flag: "🇺🇸" },
         { code: "+44", name: "UK", flag: "🇬🇧" },
@@ -64,9 +67,11 @@ export default function Enquiry() {
         { code: "+27", name: "South Africa", flag: "🇿🇦" },
         { code: "+221", name: "Senegal", flag: "🇸🇳" },
         { code: "+233", name: "Ghana", flag: "🇬🇭" },
-    ];
+    ];*/
     //add state for selected dial code
-    const [dialCode, setDialCode] = useState("+256");
+    const handlePhoneChange = (value: Value) =>{
+        setFormData({ ...formData, contact: value || "" });
+    };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const {name, value } = e.target;
@@ -84,13 +89,7 @@ export default function Enquiry() {
                 return;
             }
         }
-        //validate contact
-        if (name === "contact") {
-            if (value.startsWith("0")) {
-                setError("Contact number should not start with a zero");
-                return;
-            }
-        }
+
         setFormData({ ...formData, [name]: value });
         setError("");//clear any previous errors.
     };
@@ -142,7 +141,7 @@ export default function Enquiry() {
                 },
                 body: JSON.stringify({
                     ...formData,
-                    contact: `${dialCode}${formData.contact}`, //combines dial code and contact
+                    //contact: `${dialCode}${formData.contact}`, //combines dial code and contact
                     services: updatedServices, //send the object instead of an array.
                     know_us: updatedKnowUs,
                 }),
@@ -169,109 +168,153 @@ export default function Enquiry() {
         <div className=" flex-grow max-w-6xl w-full rounded-lg overflow-hidden flex my-8 mx-auto">
           {/* Left Side: Text Content */}
             <div className="w-1/2 p-8 bg-[#F9FAFB] text-black">
-            <h1 className="text-3xl text-[#F6931B] font-bold mb-8">Welcome to Tek Juice!</h1>
-            <p className="mb-4 leading-relaxed">
-                We create opportunities through technology by{' '}
-                offering strategic consultancy and talent solutions 
-                that empower businesses to scale efficiently.
-            </p>
-            <h2 className="text-xl text-[#F6931B] font-semibold mb-2">Our Services:</h2>
-            <ul className="list-none mb-4 leading-relaxed">
-                {/* Tek Talent Africa */}
-                <li className="mb-4">
-                <div className="flex items-start">
-                    <span className="text-[#F6931B] mr-2">
-                        <Image 
-                            src="/talent.svg" // Icon path in public folder at the root
-                            alt="Talent Icon"
-                            width={100}
-                            height={100}
-                            className="text-white"
-                        />
-                    </span> {/* Icon */}
-                    <div>
-                    <h3 className="text-lg text-[#F6931B] font-semibold mb-1">Tek Talent Africa</h3>
-                    <p className="ml-6">
-                        A premier platform connecting global businesses with top African tech talent. 
-                        We source, vet, and place skilled professionals through our African offices, 
-                        ensuring world-class quality and global readiness.
-                    </p>
+                <h1 className="text-3xl text-[#F6931B] font-bold mb-8">Welcome to Tek Juice!</h1>
+                <p className="mb-4 leading-relaxed">
+                    We create opportunities through technology by{' '}
+                    offering strategic consultancy and talent solutions 
+                    that empower businesses to scale efficiently.
+                </p>
+                <h2 className="text-xl text-[#F6931B] font-semibold mb-2">Our Services:</h2>
+                <ul className="list-none mb-4 leading-relaxed">
+                    {/* Tek Talent Africa */}
+                    <li className="mb-4">
+                    <div className="flex items-start">
+                        <span className="text-[#F6931B] mr-2">
+                            <Image 
+                                src="/talent.svg" // Icon path in public folder at the root
+                                alt="Talent Icon"
+                                width={100}
+                                height={100}
+                                className="text-white"
+                            />
+                        </span> {/* Icon */}
+                        <div>
+                        <h3 className="text-lg text-[#F6931B] font-semibold mb-1">Tek Talent Africa</h3>
+                        <p className="ml-6">
+                            A premier platform connecting global businesses with top African tech talent. 
+                            We source, vet, and place skilled professionals through our African offices, 
+                            ensuring world-class quality and global readiness.
+                        </p>
+                        </div>
                     </div>
-                </div>
-                </li>
+                    </li>
 
-                {/* Outsourcing Tech Teams */}
-                <li className="mb-4">
-                <div className="flex items-start">
-                    <span className="text-[#F6931B] mr-2">
-                        <Image 
-                            src="/outsourcing.svg" // Icon Path
-                            alt="Outsourcing Icon"
-                            width={100}
-                            height={100}
-                            className="text-white"
-                        />
-                    </span> {/* Icon */}
-                    <div>
-                    <h3 className="text-lg text-[#F6931B] font-semibold mb-1">Outsourcing Tech Teams</h3>
-                    <p className="ml-6">
-                        We help companies{' '}
-                        build, manage, and scale remote tech teams by providing{' '}
-                        dedicated developers, engineers, and IT specialists tailored 
-                        to your business needs. Whether you need a full tech team or specific 
-                        expertise, we handle recruitment, onboarding, and management to ensure 
-                        seamless operations.
-                    </p>
+                    {/* Outsourcing Tech Teams */}
+                    <li className="mb-4">
+                    <div className="flex items-start">
+                        <span className="text-[#F6931B] mr-2">
+                            <Image 
+                                src="/outsourcing.svg" // Icon Path
+                                alt="Outsourcing Icon"
+                                width={100}
+                                height={100}
+                                className="text-white"
+                            />
+                        </span> {/* Icon */}
+                        <div>
+                        <h3 className="text-lg text-[#F6931B] font-semibold mb-1">Outsourcing Tech Teams</h3>
+                        <p className="ml-6">
+                            We help companies{' '}
+                            build, manage, and scale remote tech teams by providing{' '}
+                            dedicated developers, engineers, and IT specialists tailored 
+                            to your business needs. Whether you need a full tech team or specific 
+                            expertise, we handle recruitment, onboarding, and management to ensure 
+                            seamless operations.
+                        </p>
+                        </div>
                     </div>
-                </div>
-                </li>
+                    </li>
 
-                {/* Managed Support Services */}
-                <li className="mb-4">
-                <div className="flex items-start">
+                    {/* Managed Support Services */}
+                    <li className="mb-4">
+                    <div className="flex items-start">
+                        <span className="text-[#F6931B] mr-2">
+                            <Image 
+                                src="/support.svg" // Icon Path
+                                alt="Support Icon"
+                                width={100}
+                                height={100}
+                                className="text-white"
+                            />
+                        </span> {/* Icon */}
+                        <div>
+                            <h3 className="text-lg text-[#F6931B] font-semibold mb-1">Managed Support Services</h3>
+                            <p className="ml-6">
+                                We offer{' '}
+                                ongoing technical and IT support to help businesses maintain their digital infrastructure. Our{' '}
+                                managed support includes{' '}
+                                
+                                system monitoring, troubleshooting, software updates, cybersecurity, and round-the-clock technical assistance
+                                
+                                , ensuring business continuity and efficiency.
+                            </p>
+                        </div>
+                    </div>
+                    </li>
+                </ul>
+
+                <p className="mb-4 leading-relaxed">
+                    Submit your enquiry, and our team will get back to you within 24-48 hours!
+                </p>
+                <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+                {/* Website */}
+                <div className="flex items-center">
                     <span className="text-[#F6931B] mr-2">
                         <Image 
-                            src="/support.svg" // Icon Path
+                            src="/website.png" // Icon Path
                             alt="Support Icon"
-                            width={100}
+                            width={60} // Adjusted size for better alignment
+                            height={60}
+                            className="text-white"
+                        />
+                    </span>
+                    <p className="leading-relaxed">
+                        Visit us at:{' '}
+                        <a href="https://www.tekjuice.co.uk" className="underline">
+                            www.tekjuice.co.uk
+                        </a>
+                    </p>
+                </div>
+
+                {/* Email */}
+                <div className="flex items-center">
+                    <span className="text-[#F6931B] mr-2">
+                        <Image 
+                            src="/email.png" // Icon Path
+                            alt="Support Icon"
+                            width={100} // Adjusted size for better alignment
                             height={100}
                             className="text-white"
                         />
-                    </span> {/* Icon */}
-                    <div>
-                    <h3 className="text-lg text-[#F6931B] font-semibold mb-1">Managed Support Services</h3>
-                    <p className="ml-6">
-                        We offer{' '}
-                        ongoing technical and IT support to help businesses maintain their digital infrastructure. Our{' '}
-                        managed support includes{' '}
-                        
-                        system monitoring, troubleshooting, software updates, cybersecurity, and round-the-clock technical assistance
-                        
-                        , ensuring business continuity and efficiency.
+                    </span>
+                    <p className="leading-relaxed">
+                        Email:{' '}
+                        <a href="mailto:info@tekjuice.co.uk" className="underline">
+                            info@tekjuice.co.uk
+                        </a>
                     </p>
-                    </div>
                 </div>
-                </li>
-            </ul>
 
-            <p className="mb-4 leading-relaxed">
-                Submit your enquiry, and our team will get back to you within 24-48 hours!
-            </p>
-            <p className="mb-4 leading-relaxed">
-                For more information, visit us at:{' '}
-                <a href="[Website URL]" className="underline">
-                [Website URL]
-                </a>
-            </p>
-            <p className="mb-4 leading-relaxed">
-                Email us at:{' '}
-                <a href="mailto:tekjuicedigitalmarketing@gmail.com" className="underline">
-                tekjuicedigitalmarketing@gmail.com
-                </a>
-            </p>
-            <p className="leading-relaxed">
-                Call us at: <span className="underline">+44 7974 810717</span>
-            </p>
+                {/* Phone */}
+                <div className="flex items-center">
+                    <span className="text-[#F6931B] mr-2">
+                        <Image 
+                            src="/telephone.png" // Icon Path
+                            alt="Support Icon"
+                            width={50} // Adjusted size for better alignment
+                            height={50}
+                            className="text-white"
+                        />
+                    </span>
+                    <p className="leading-relaxed underline">
+                        Call:{' '}
+                        <a href="tel:+447974810717" className="underline">
+                            +44 7974 810717
+                        </a>
+                    </p>
+                </div>
+            </div>
+                
             </div>
   
           {/* Right Side: Form */}
@@ -330,28 +373,20 @@ export default function Enquiry() {
                     <label className="block text-sm font-medium text-black">Contact</label>
                     <div className="flex gap-2">
                         {/* Dial Code Dropdown with Flag */}
-                        <div className="flex items-center border border-[#E2E8F0] rounded-lg focus:ring-2 focus:ring-[#3182CE] focus:border-transparent">
-                            <select
-                                value={dialCode}
-                                onChange={(e) => setDialCode(e.target.value)}
-                                className="p-3 text-[#1A1A1A] bg-transparent outline-none"
-                            >
-                                {countryDialCodes.map((country) => (
-                                    <option key={country.code} value={country.code}>
-                                        {country.flag} {country.code} {country.name}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
 
                         {/* Contact Input */}
-                        <input
-                            name="contact"
-                            type="tel"
-                            placeholder="757xxxxxx"
+                        <PhoneInput
+                            international
+                            defaultCountry="UG"
                             value={formData.contact}
-                            onChange={handleChange}
-                            className="flex-1 p-3 border border-[#E2E8F0] rounded-lg placeholder-[#A0AEC0] text-black focus:ring-2 focus:ring-[#3182CE] focus:border-transparent"
+                            onChange={handlePhoneChange}
+                            placeholder="Enter Phone Number"
+                            className="flex-1 block p-3 border border-[#E2E8F0] rounded-lg placeholder-[#A0AEC0] text-black focus:ring-2 focus:ring-[#3182CE] focus:border-transparent"
+                            style={{
+                                '--PhoneInputCountryFlag-height': '1em', // Adjust flag height
+                                '--PhoneInputCountryFlag-width': '1.5em', // Adjust flag width
+                                '--PhoneInputCountrySelectArrow-color': '#3182CE', // Customize dropdown arrow color
+                            }}
                             required
                         />
                     </div>
