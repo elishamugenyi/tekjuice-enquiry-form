@@ -327,7 +327,7 @@ export default function Enquiry() {
                         name="name"
                         placeholder="Enter Your full name"
                         onChange={handleChange}
-                        className="mt-1 block w-full px-3 py-2 border border-[#F6931B] text-black rounded-md shadow-sm focus:outline-[#F6931B] focus:ring-[#F6931B] focus:border-[#F6931B]"
+                        className="mt-1 block w-full px-3 py-2 border border-gray-300 text-black rounded-md shadow-sm focus:outline-[#F6931B] focus:ring-[#F6931B] focus:border-[#F6931B]"
                         required
                     />
                 </div>
@@ -342,7 +342,7 @@ export default function Enquiry() {
                         name="company"
                         placeholder="Enter Company Name."
                         onChange={handleChange}
-                        className="mt-1 block w-full px-3 py-2 text-black border border-[#F6931B] rounded-md shadow-sm focus:outline-[#F6931B] focus:ring-[#F6931B] focus:border-[#F6931B]"
+                        className="mt-1 block w-full px-3 py-2 text-black border border-gray-300 rounded-md shadow-sm focus:outline-[#F6931B] focus:ring-[#F6931B] focus:border-[#F6931B]"
                     />
                 </div>
 
@@ -356,7 +356,7 @@ export default function Enquiry() {
                         name="email"
                         placeholder="Enter Your Email"
                         onChange={handleChange}
-                        className="mt-1 block w-full px-3 py-2 text-black border border-[#F6931B] rounded-md shadow-sm focus:outline-[#F6931B] focus:ring-[#F6931B] focus:border-[#F6931B]"
+                        className="mt-1 block w-full px-3 py-2 text-black border border-gray-300 rounded-md shadow-sm focus:outline-[#F6931B] focus:ring-[#F6931B] focus:border-[#F6931B]"
                         required
                     />
                 </div>
@@ -375,16 +375,16 @@ export default function Enquiry() {
                             onChange={handlePhoneChange}
                             placeholder="Enter Phone Number"
                             className="
-                                flex-1 block p-3 border-2 border-[#F6931B] rounded-lg 
+                                flex-1 block p-3 border-2 border-gray-300 rounded-lg 
                                 placeholder-[#F6931B] text-black focus:outline-none
                                 focus:ring-2 focus:ring-[#F6931B] focus:border-[#F6931B]
                                 hover:border-[#F6931B] transition-colors duration-200
                                 "
                             style={{
                                 '--PhoneInputCountryFlag-height': '1em', // Adjust flag height
-                                '--PhoneInputCountryFlag-width': '1.5em', // Adjust flag width
-                                '--PhoneInput-color--focus': '#F6931B', //Input focus 
+                                '--PhoneInputCountryFlag-width': '1.5em', // Adjust flag width 
                                 '--PhoneInputCountrySelectArrow-color': '#F6931B', // Customize dropdown arrow color
+                                
                             }}
                             required
                         />
@@ -401,7 +401,7 @@ export default function Enquiry() {
                         name="location"
                         placeholder="Enter Your Location."
                         onChange={handleChange}
-                        className="mt-1 block w-full px-3 py-2 text-black border border-[#F6931B] rounded-md shadow-sm focus:outline-[#F6931B] focus:ring-[#F6931B] focus:border-[#F6931B]"
+                        className="mt-1 block w-full px-3 py-2 text-black border border-gray-300 rounded-md shadow-sm focus:outline-[#F6931B] focus:ring-[#F6931B] focus:border-[#F6931B]"
                         required
                     />
                 </div>
@@ -422,7 +422,7 @@ export default function Enquiry() {
                             value={option.value}
                             onChange={handleCheckboxChange}
                             checked={formData.services.includes(option.value)}
-                            className="appearance-none h-5 w-5 rounded border-2 border-[#F6931B] 
+                            className="appearance-none h-5 w-5 rounded border-2 border-gray-300 
                                         checked:bg-[#F6931B] checked:border-[#F6931B] relative transition-colors duration-200
                                         before:content-[''] before:absolute before:left-1/2 before:top-1/2 before:w-2 before:h-3 
                                         before:border-r-2 before:border-b-2 before:border-white before:transform 
@@ -440,7 +440,7 @@ export default function Enquiry() {
                                     value={otherService}
                                     onChange={(e) => setOtherService(e.target.value)}
                                     className="w-full px-3 py-2 text-black border 
-                                    border-[#F6931B] rounded-md shadow-sm 
+                                    border-gray-300 rounded-md shadow-sm focus:outline-[#F6931B]
                                     focus:ring-[#F6931B] focus:border-[#F6931B]"
                                     placeholder="Specify other services"
                                 />
@@ -460,7 +460,7 @@ export default function Enquiry() {
                         value={formData.about_you}
                         onChange={handleChange}
                         rows={4}
-                        className="mt-1 block w-full px-3 py-2 text-black border border-[#F6931B] rounded-md shadow-sm focus:outline-[#F6931B] focus:ring-[#F6931B] focus:border-[#F6931B]"
+                        className="mt-1 block w-full px-3 py-2 text-black border border-gray-300 rounded-md shadow-sm focus:outline-[#F6931B] focus:ring-[#F6931B] focus:border-[#F6931B]"
                     ></textarea>
                 </div>
 
@@ -482,7 +482,7 @@ export default function Enquiry() {
                                     value={option.value}
                                     onChange={handleCheckboxChange}
                                     checked={formData.preferred_contact.includes(option.value)}
-                                    className="appearance-none h-5 w-5 rounded border-2 border-[#F6931B] 
+                                    className="appearance-none h-5 w-5 rounded border-2 border-gray-300 
                                         checked:bg-[#F6931B] checked:border-[#F6931B] relative transition-colors duration-200
                                         before:content-[''] before:absolute before:left-1/2 before:top-1/2 before:w-2 before:h-3 
                                         before:border-r-2 before:border-b-2 before:border-white before:transform 
@@ -515,7 +515,7 @@ export default function Enquiry() {
                             setOtherKnowUs(""); // Reset the "Other" input when "Others" is selected
                             }
                         }}
-                        className="w-full px-3 py-2 text-black border border-[#F6931B] rounded-md shadow-sm focus:outline-[#F6931B] focus:ring-[#F6931B] focus:border-[#F6931B]"
+                        className="w-full px-3 py-2 text-black border border-gray-300 rounded-md shadow-sm focus:outline-[#F6931B] focus:ring-[#F6931B] focus:border-[#F6931B]"
                         >
                         <option value="">Select an option</option>
                         <option value="Social media">Social media</option>
@@ -530,7 +530,7 @@ export default function Enquiry() {
                                 type="text"
                                 value={otherKnowUs}
                                 onChange={(e) => setOtherKnowUs(e.target.value)}
-                                className="w-full px-3 py-2 text-black border border-[#F6931B] rounded-md shadow-sm focus:outline-[#F6931B] focus:ring-[#F6931B] focus:border-[#F6931B]"
+                                className="w-full px-3 py-2 text-black border border-gray-300 rounded-md shadow-sm focus:outline-[#F6931B] focus:ring-[#F6931B] focus:border-[#F6931B]"
                                 placeholder="Specify"
                             />
                         </div>
