@@ -169,7 +169,7 @@ export default function Enquiry() {
           {/* Left Side: Text Content */}
             <div className="w-1/2 p-8 bg-[#F9FAFB] text-black">
                 <h1 className="text-3xl text-[#F6931B] font-bold mb-8">Welcome to Tek Juice!</h1>
-                <p className="mb-4 leading-relaxed">
+                <p className="mb-4 text-xl leading-relaxed">
                     We create opportunities through technology by{' '}
                     offering strategic consultancy and talent solutions 
                     that empower businesses to scale efficiently.
@@ -256,64 +256,57 @@ export default function Enquiry() {
                 <p className="mb-4 leading-relaxed">
                     Submit your enquiry, and our team will get back to you within 24-48 hours!
                 </p>
-                <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-                {/* Website */}
-                <div className="flex items-center">
-                    <span className="text-[#F6931B] mr-2">
-                        <Image 
-                            src="/website.png" // Icon Path
-                            alt="Support Icon"
-                            width={60} // Adjusted size for better alignment
-                            height={60}
-                            className="text-white"
-                        />
-                    </span>
-                    <p className="leading-relaxed">
-                        Visit us at:{' '}
-                        <a href="https://www.tekjuice.co.uk" className="underline">
+                <div className="flex flex-col ml-20 gap-4">
+                    <h3 className="text-lg font-medium">Visit us:</h3>
+                    
+                    {/* Website */}
+                    <div className="flex items-center">
+                        <span className="text-[#F6931B] mr-2">
+                            <Image 
+                                src="/website.png"
+                                alt="Website Icon"
+                                width={30}
+                                height={30}
+                                className="text-white"
+                            />
+                        </span>
+                        <a href="https://www.tekjuice.co.uk">
                             www.tekjuice.co.uk
                         </a>
-                    </p>
-                </div>
+                    </div>
 
-                {/* Email */}
-                <div className="flex items-center">
-                    <span className="text-[#F6931B] mr-2">
-                        <Image 
-                            src="/email.png" // Icon Path
-                            alt="Support Icon"
-                            width={100} // Adjusted size for better alignment
-                            height={100}
-                            className="text-white"
-                        />
-                    </span>
-                    <p className="leading-relaxed">
-                        Email:{' '}
-                        <a href="mailto:info@tekjuice.co.uk" className="underline">
-                            info@tekjuice.co.uk
-                        </a>
-                    </p>
-                </div>
-
-                {/* Phone */}
-                <div className="flex items-center">
-                    <span className="text-[#F6931B] mr-2">
-                        <Image 
-                            src="/telephone.png" // Icon Path
-                            alt="Support Icon"
-                            width={50} // Adjusted size for better alignment
-                            height={50}
-                            className="text-white"
-                        />
-                    </span>
-                    <p className="leading-relaxed underline">
-                        Call:{' '}
-                        <a href="tel:+447974810717" className="underline">
+                    {/* Phone */}
+                    <div className="flex items-center">
+                        <span className="text-[#F6931B] mr-2">
+                            <Image 
+                                src="/telephone.png"
+                                alt="Phone Icon"
+                                width={30}
+                                height={30}
+                                className="text-white"
+                            />
+                        </span>
+                        <a href="tel:+447974810717">
                             +44 7974 810717
                         </a>
-                    </p>
+                    </div>
+
+                    {/* Email */}
+                    <div className="flex items-center">
+                        <span className="text-[#F6931B] mr-2">
+                            <Image 
+                                src="/email.png"
+                                alt="Email Icon"
+                                width={30}
+                                height={30}
+                                className="text-white"
+                            />
+                        </span>
+                        <a href="mailto:info@tekjuice.co.uk">
+                            info@tekjuice.co.uk
+                        </a>
+                    </div>
                 </div>
-            </div>
                 
             </div>
   
@@ -334,7 +327,7 @@ export default function Enquiry() {
                         name="name"
                         placeholder="Enter Your full name"
                         onChange={handleChange}
-                        className="mt-1 block w-full px-3 py-2 border border-gray-300 text-black rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                        className="mt-1 block w-full px-3 py-2 border border-[#F6931B] text-black rounded-md shadow-sm focus:outline-[#F6931B] focus:ring-[#F6931B] focus:border-[#F6931B]"
                         required
                     />
                 </div>
@@ -349,7 +342,7 @@ export default function Enquiry() {
                         name="company"
                         placeholder="Enter Company Name."
                         onChange={handleChange}
-                        className="mt-1 block w-full px-3 py-2 text-black border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                        className="mt-1 block w-full px-3 py-2 text-black border border-[#F6931B] rounded-md shadow-sm focus:outline-[#F6931B] focus:ring-[#F6931B] focus:border-[#F6931B]"
                     />
                 </div>
 
@@ -363,7 +356,7 @@ export default function Enquiry() {
                         name="email"
                         placeholder="Enter Your Email"
                         onChange={handleChange}
-                        className="mt-1 block w-full px-3 py-2 text-black border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                        className="mt-1 block w-full px-3 py-2 text-black border border-[#F6931B] rounded-md shadow-sm focus:outline-[#F6931B] focus:ring-[#F6931B] focus:border-[#F6931B]"
                         required
                     />
                 </div>
@@ -381,11 +374,17 @@ export default function Enquiry() {
                             value={formData.contact}
                             onChange={handlePhoneChange}
                             placeholder="Enter Phone Number"
-                            className="flex-1 block p-3 border border-[#E2E8F0] rounded-lg placeholder-[#A0AEC0] text-black focus:ring-2 focus:ring-[#3182CE] focus:border-transparent"
+                            className="
+                                flex-1 block p-3 border-2 border-[#F6931B] rounded-lg 
+                                placeholder-[#F6931B] text-black focus:outline-none
+                                focus:ring-2 focus:ring-[#F6931B] focus:border-[#F6931B]
+                                hover:border-[#F6931B] transition-colors duration-200
+                                "
                             style={{
                                 '--PhoneInputCountryFlag-height': '1em', // Adjust flag height
                                 '--PhoneInputCountryFlag-width': '1.5em', // Adjust flag width
-                                '--PhoneInputCountrySelectArrow-color': '#3182CE', // Customize dropdown arrow color
+                                '--PhoneInput-color--focus': '#F6931B', //Input focus 
+                                '--PhoneInputCountrySelectArrow-color': '#F6931B', // Customize dropdown arrow color
                             }}
                             required
                         />
@@ -402,7 +401,7 @@ export default function Enquiry() {
                         name="location"
                         placeholder="Enter Your Location."
                         onChange={handleChange}
-                        className="mt-1 block w-full px-3 py-2 text-black border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                        className="mt-1 block w-full px-3 py-2 text-black border border-[#F6931B] rounded-md shadow-sm focus:outline-[#F6931B] focus:ring-[#F6931B] focus:border-[#F6931B]"
                         required
                     />
                 </div>
@@ -423,7 +422,12 @@ export default function Enquiry() {
                             value={option.value}
                             onChange={handleCheckboxChange}
                             checked={formData.services.includes(option.value)}
-                            className="form-checkbox h-5 w-5 rounded focus:ring-[#3182CE]"
+                            className="appearance-none h-5 w-5 rounded border-2 border-[#F6931B] 
+                                        checked:bg-[#F6931B] checked:border-[#F6931B] relative transition-colors duration-200
+                                        before:content-[''] before:absolute before:left-1/2 before:top-1/2 before:w-2 before:h-3 
+                                        before:border-r-2 before:border-b-2 before:border-white before:transform 
+                                        before:-translate-x-1/2 before:-translate-y-1/2 before:rotate-45 before:opacity-0 
+                                        checked:before:opacity-100"
                             />
                             <span className="text-black text-sm md:text-base">{option.label}</span>
                         </label>
@@ -436,8 +440,8 @@ export default function Enquiry() {
                                     value={otherService}
                                     onChange={(e) => setOtherService(e.target.value)}
                                     className="w-full px-3 py-2 text-black border 
-                                    border-gray-300 rounded-md shadow-sm 
-                                    focus:ring-blue-500 focus:border-blue-500"
+                                    border-[#F6931B] rounded-md shadow-sm 
+                                    focus:ring-[#F6931B] focus:border-[#F6931B]"
                                     placeholder="Specify other services"
                                 />
                             </div>
@@ -456,7 +460,7 @@ export default function Enquiry() {
                         value={formData.about_you}
                         onChange={handleChange}
                         rows={4}
-                        className="mt-1 block w-full px-3 py-2 text-black border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                        className="mt-1 block w-full px-3 py-2 text-black border border-[#F6931B] rounded-md shadow-sm focus:outline-[#F6931B] focus:ring-[#F6931B] focus:border-[#F6931B]"
                     ></textarea>
                 </div>
 
@@ -478,7 +482,13 @@ export default function Enquiry() {
                                     value={option.value}
                                     onChange={handleCheckboxChange}
                                     checked={formData.preferred_contact.includes(option.value)}
-                                    className="form-checkbox h-5 w-5 text-[#3182CE] rounded-full checked:bg-[#3182CE] checked:border-transparent focus:ring-[#3182CE] focus:ring-2"
+                                    className="appearance-none h-5 w-5 rounded border-2 border-[#F6931B] 
+                                        checked:bg-[#F6931B] checked:border-[#F6931B] relative transition-colors duration-200
+                                        before:content-[''] before:absolute before:left-1/2 before:top-1/2 before:w-2 before:h-3 
+                                        before:border-r-2 before:border-b-2 before:border-white before:transform 
+                                        before:-translate-x-1/2 before:-translate-y-1/2 before:rotate-45 before:opacity-0 
+                                        checked:before:opacity-100
+                                        "
                                 />
                                 <span className="text-black text-sm md:text-base">{option.label}</span>
                             </label>
@@ -505,7 +515,7 @@ export default function Enquiry() {
                             setOtherKnowUs(""); // Reset the "Other" input when "Others" is selected
                             }
                         }}
-                        className="w-full px-3 py-2 text-black border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                        className="w-full px-3 py-2 text-black border border-[#F6931B] rounded-md shadow-sm focus:outline-[#F6931B] focus:ring-[#F6931B] focus:border-[#F6931B]"
                         >
                         <option value="">Select an option</option>
                         <option value="Social media">Social media</option>
@@ -520,7 +530,7 @@ export default function Enquiry() {
                                 type="text"
                                 value={otherKnowUs}
                                 onChange={(e) => setOtherKnowUs(e.target.value)}
-                                className="w-full px-3 py-2 text-black border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                                className="w-full px-3 py-2 text-black border border-[#F6931B] rounded-md shadow-sm focus:outline-[#F6931B] focus:ring-[#F6931B] focus:border-[#F6931B]"
                                 placeholder="Specify"
                             />
                         </div>
