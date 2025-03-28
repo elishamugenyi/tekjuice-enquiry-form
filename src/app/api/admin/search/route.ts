@@ -10,26 +10,50 @@ export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
     const query = searchParams.get("query") || ""; // Search query
-    //const type = searchParams.get("type"); // "brands" or "influencers"
+    const type = searchParams.get("type"); // "talent" or "enquiry"
 
-    /*if (!type) {
+    if (!type) {
       return NextResponse.json(
-        { success: false, error: "Select a Tab to seach from" },
+        { success: false, error: "Please Select a Table to seach from" },
         { status: 400 }
       );
-    }*/
+    }
+
+    if(type !== 'talent' && type !== 'enquiry') {
+      return NextResponse.json(
+        { success: false, error: "Invalid table type specified" },
+        { status: 400 }
+      );
+    }
 
     let result;
-    // Search users
-    result = await client.sql`
-    SELECT * FROM enquiry 
-    WHERE name ILIKE ${`%${query}%`} 
-        OR company ILIKE ${`%${query}%`} 
-        OR email ILIKE ${`%${query}%`}
-    ORDER BY created_at DESC;
-    `;
+    
+    if (type === 'talent') {
+      // Search talent table
+      result = await client.sql`
+        SELECT * FROM talent 
+        WHERE name ILIKE ${`%${query}%`} 
+           OR email1 ILIKE ${`%${query}%`}
+           OR contact ILIKE ${`%${query}%`}
+           OR skills::text ILIKE ${`%${query}%`}
+        ORDER BY created_at DESC;
+      `;
+    } else {
+      // Search enquiry table
+      result = await client.sql`
+        SELECT * FROM enquiry 
+        WHERE name ILIKE ${`%${query}%`} 
+           OR company ILIKE ${`%${query}%`} 
+           OR email ILIKE ${`%${query}%`}
+           OR contact ILIKE ${`%${query}%`}
+           OR services::text ILIKE ${`%${query}%`}
+        ORDER BY created_at DESC;
+      `;
+    }
 
-    return NextResponse.json({ success: true, data: result.rows }, { status: 200 });
+    return NextResponse.json(
+      { success: true, data: result.rows, searchedTable: type }, 
+      { status: 200 });
   } catch (error) {
     console.error("Error searching records:", error);
     return NextResponse.json(
