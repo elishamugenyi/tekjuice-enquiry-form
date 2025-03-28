@@ -150,295 +150,295 @@ export default function Enquiry() {
         <div className="min-h-screen bg-[#F9FAFB] pt-20">
           <Navbar />
           <div className="max-w-6xl w-full mx-auto px-4 sm:px-6 py-8">
-            {/* Stack content vertically on mobile */}
-            <div className="flex flex-col lg:flex-row gap-8">
-              {/* Left Side: Text Content - Full width on mobile */}
-              <div className="w-full lg:w-1/2 p-4 sm:p-8 bg-[#F9FAFB] text-black">
-                <h1 className="text-2xl sm:text-3xl text-[#F6931B] font-bold mb-6">Welcome to Tek Juice!</h1>
-                <p className="mb-6 text-lg sm:text-xl leading-relaxed">
-                  We create opportunities through technology by offering strategic consultancy and talent solutions 
-                  that empower businesses to scale efficiently.
-                </p>
-                
-                <h2 className="text-xl text-[#F6931B] font-semibold mb-4">Our Services:</h2>
-                
-                <ul className="list-none mb-6 space-y-6">
-                  {/* Tek Talent Africa */}
-                  <li>
-                    <div className="flex flex-col sm:flex-row items-start gap-4">
-                      <div className="flex-shrink-0">
-                        <Image 
-                          src="/talent.svg"
-                          alt="Talent Icon"
-                          width={60}
-                          height={60}
-                          className="text-white"
-                        />
-                      </div>
-                      <div>
-                        <h3 className="text-lg text-[#F6931B] font-semibold mb-2">Tek Talent Africa</h3>
-                        <p className="text-base">
-                          A premier platform connecting global businesses with top African tech talent. 
-                          We source, vet, and place skilled professionals through our African offices, 
-                          ensuring world-class quality and global readiness.
+                {/* Stack content vertically on mobile */}
+                <div className="flex flex-col lg:flex-row gap-8">
+                    {/* Left Side: Text Content - Full width on mobile */}
+                    <div className="w-full lg:w-1/2 p-4 sm:p-8 bg-[#F9FAFB] text-black">
+                        <h1 className="text-2xl sm:text-3xl text-[#F6931B] font-bold mb-6">Welcome to Tek Juice!</h1>
+                        <p className="mb-6 text-lg sm:text-xl leading-relaxed">
+                        We create opportunities through technology by offering strategic consultancy and talent solutions 
+                        that empower businesses to scale efficiently.
                         </p>
-                      </div>
-                    </div>
-                  </li>
-      
-                  {/* Outsourcing Tech Teams */}
-                  <li>
-                    <div className="flex flex-col sm:flex-row items-start gap-4">
-                      <div className="flex-shrink-0">
-                        <Image 
-                          src="/outsourcing.svg"
-                          alt="Outsourcing Icon"
-                          width={60}
-                          height={60}
-                          className="text-white"
-                        />
-                      </div>
-                      <div>
-                        <h3 className="text-lg text-[#F6931B] font-semibold mb-2">Outsourcing Tech Teams</h3>
-                        <p className="text-base">
-                          We help companies build, manage, and scale remote tech teams by providing 
-                          dedicated developers, engineers, and IT specialists tailored to your business needs. 
-                          Whether you need a full tech team or specific expertise, we handle recruitment, 
-                          onboarding, and management to ensure seamless operations.
+                    
+                        <h2 className="text-xl text-[#F6931B] font-semibold mb-4">Our Services:</h2>
+                        
+                        <ul className="list-none mb-6 space-y-6">
+                            {/* Tek Talent Africa */}
+                            <li>
+                                <div className="flex flex-col sm:flex-row items-start gap-4">
+                                <div className="flex-shrink-0">
+                                    <Image 
+                                    src="/talent.svg"
+                                    alt="Talent Icon"
+                                    width={60}
+                                    height={60}
+                                    className="text-white"
+                                    />
+                                </div>
+                                <div>
+                                    <h3 className="text-lg text-[#F6931B] font-semibold mb-2">Tek Talent Africa</h3>
+                                    <p className="text-base">
+                                    A premier platform connecting global businesses with top African tech talent. 
+                                    We source, vet, and place skilled professionals through our African offices, 
+                                    ensuring world-class quality and global readiness.
+                                    </p>
+                                </div>
+                                </div>
+                            </li>
+            
+                            {/* Outsourcing Tech Teams */}
+                            <li>
+                                <div className="flex flex-col sm:flex-row items-start gap-4">
+                                <div className="flex-shrink-0">
+                                    <Image 
+                                    src="/outsourcing.svg"
+                                    alt="Outsourcing Icon"
+                                    width={60}
+                                    height={60}
+                                    className="text-white"
+                                    />
+                                </div>
+                                <div>
+                                    <h3 className="text-lg text-[#F6931B] font-semibold mb-2">Outsourcing Tech Teams</h3>
+                                    <p className="text-base">
+                                    We help companies build, manage, and scale remote tech teams by providing 
+                                    dedicated developers, engineers, and IT specialists tailored to your business needs. 
+                                    Whether you need a full tech team or specific expertise, we handle recruitment, 
+                                    onboarding, and management to ensure seamless operations.
+                                    </p>
+                                </div>
+                                </div>
+                            </li>
+            
+                            {/* Managed Support Services */}
+                            <li>
+                                <div className="flex flex-col sm:flex-row items-start gap-4">
+                                <div className="flex-shrink-0">
+                                    <Image 
+                                    src="/support.svg"
+                                    alt="Support Icon"
+                                    width={60}
+                                    height={60}
+                                    className="text-white"
+                                    />
+                                </div>
+                                <div>
+                                    <h3 className="text-lg text-[#F6931B] font-semibold mb-2">Managed Support Services</h3>
+                                    <p className="text-base">
+                                    We offer ongoing technical and IT support to help businesses maintain their digital infrastructure. 
+                                    Our managed support includes system monitoring, troubleshooting, software updates, cybersecurity, 
+                                    and round-the-clock technical assistance, ensuring business continuity and efficiency.
+                                    </p>
+                                </div>
+                                </div>
+                            </li>
+                        </ul>
+            
+                        <p className="mb-6 text-lg leading-relaxed">
+                        Submit your enquiry, and our team will get back to you within 24-48 hours!
                         </p>
-                      </div>
-                    </div>
-                  </li>
-      
-                  {/* Managed Support Services */}
-                  <li>
-                    <div className="flex flex-col sm:flex-row items-start gap-4">
-                      <div className="flex-shrink-0">
-                        <Image 
-                          src="/support.svg"
-                          alt="Support Icon"
-                          width={60}
-                          height={60}
-                          className="text-white"
-                        />
-                      </div>
-                      <div>
-                        <h3 className="text-lg text-[#F6931B] font-semibold mb-2">Managed Support Services</h3>
-                        <p className="text-base">
-                          We offer ongoing technical and IT support to help businesses maintain their digital infrastructure. 
-                          Our managed support includes system monitoring, troubleshooting, software updates, cybersecurity, 
-                          and round-the-clock technical assistance, ensuring business continuity and efficiency.
-                        </p>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-      
-                <p className="mb-6 text-lg leading-relaxed">
-                  Submit your enquiry, and our team will get back to you within 24-48 hours!
-                </p>
-                
-                {/* Contact Info - Stacked vertically */}
-                <div className="space-y-4">
-                  <h3 className="text-lg font-medium">Visit us:</h3>
-                  
-                  <div className="flex items-center gap-3">
-                    <Image 
-                      src="/website.png"
-                      alt="Website Icon"
-                      width={24}
-                      height={24}
-                    />
-                    <a href="https://www.tekjuice.co.uk" className="text-base">
-                      www.tekjuice.co.uk
-                    </a>
-                  </div>
-      
-                  <div className="flex items-center gap-3">
-                    <Image 
-                      src="/telephone.png"
-                      alt="Phone Icon"
-                      width={24}
-                      height={24}
-                    />
-                    <a href="tel:+447974810717" className="text-base">
-                      +44 7974 810717
-                    </a>
-                  </div>
-      
-                  <div className="flex items-center gap-3">
-                    <Image 
-                      src="/email.png"
-                      alt="Email Icon"
-                      width={24}
-                      height={24}
-                    />
-                    <a href="mailto:info@tekjuice.co.uk" className="text-base">
-                      info@tekjuice.co.uk
-                    </a>
-                  </div>
-                </div>
-              </div>
-        
-              {/* Right Side: Form - Full width on mobile, appears after content */}
-              <div className="w-full lg:w-1/2 p-4 sm:p-8 bg-white order-first lg:order-last">
-                <h2 className="text-2xl sm:text-3xl text-black font-bold mb-6">Give Us Your Details</h2>
-                {success ? (
-                  <p className="text-green-600 font-bold text-center">
-                    ✅ Your Details have been submitted! We'll contact you soon. Reload page to submit another enquiry.
-                  </p>
-                ) : (
-                  <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
-                    {/* Name */}
-                    <div>
-                      <label className="block text-sm font-medium text-black mb-1">
-                        Name
-                      </label>
-                      <input
-                        type="text"
-                        name="name"
-                        placeholder="Enter Your full name"
-                        onChange={handleChange}
-                        className="w-full px-3 py-2 border border-gray-300 text-black rounded-md focus:outline-[#F6931B] focus:ring-[#F6931B] focus:border-[#F6931B]"
-                        required
-                      />
-                    </div>
-      
-                    {/* Primary Email */}
-                    <div>
-                      <label className="block text-sm font-medium text-black mb-1">
-                        Primary Email 
-                      </label>
-                      <input
-                        type="email"
-                        name="email1"
-                        placeholder="Enter Primary Email"
-                        onChange={handleChange}
-                        className="w-full px-3 py-2 text-black border border-gray-300 rounded-md focus:outline-[#F6931B] focus:ring-[#F6931B] focus:border-[#F6931B]"
-                        required
-                      />
-                    </div>
-      
-                    {/* Secondary Email */}
-                    <div>
-                      <label className="block text-sm font-medium text-black mb-1">
-                        Secondary Email (if applicable)
-                      </label>
-                      <input
-                        type="email"
-                        name="email2"
-                        placeholder="Enter Your Secondary Email"
-                        onChange={handleChange}
-                        className="w-full px-3 py-2 text-black border border-gray-300 rounded-md focus:outline-[#F6931B] focus:ring-[#F6931B] focus:border-[#F6931B]"
-                      />
-                    </div>
-      
-                    {/* Phone Number */}
-                    <div>
-                      <label className="block text-sm font-medium text-black mb-1">Contact</label>
-                      <PhoneInput
-                        international
-                        defaultCountry="UG"
-                        value={formData.contact}
-                        onChange={handlePhoneChange}
-                        placeholder="Enter Phone Number"
-                        className="
-                            w-full p-2 border-2 border-gray-300 rounded-lg placeholder-[#F6931B]
-                            text-black focus:outline-none focus:ring-2 focus:ring-[#F6931B] 
-                            focus:border-[#F6931B] hover:border-[#F6931B] transition-colors"
-                        style={{
-                          '--PhoneInputCountryFlag-height': '1em',
-                          '--PhoneInputCountryFlag-width': '1.5em',
-                          '--PhoneInputCountrySelectArrow-color': '#F6931B',
-                        }}
-                        required
-                      />
-                    </div>
-      
-                    {/* Whatsapp Number */}
-                    <div>
-                      <label className="block text-sm font-medium text-black mb-1">Whatsapp</label>
-                      <PhoneInput
-                        international
-                        defaultCountry="UG"
-                        value={formData.whatsapp}
-                        onChange={handleWhatsappChange}
-                        placeholder="Enter Whatsapp Number"
-                        className="
-                            w-full p-2 border-2 border-gray-300 rounded-lg placeholder-[#F6931B]
-                            text-black focus:outline-none focus:ring-2 focus:ring-[#F6931B] 
-                            focus:border-[#F6931B] hover:border-[#F6931B] transition-colors"
-                        style={{
-                          '--PhoneInputCountryFlag-height': '1em',
-                          '--PhoneInputCountryFlag-width': '1.5em',
-                          '--PhoneInputCountrySelectArrow-color': '#F6931B',
-                        }}
-                        required
-                      />
-                    </div>
-      
-                    {/* Skills */}
-                    <div>
-                      <label className="block text-sm font-medium text-black mb-1">
-                        Skills
-                      </label>
-                      <textarea
-                        id="skills"
-                        name="skills"
-                        placeholder="Enter Your Skills"
-                        onChange={handleChange}
-                        rows={4}
-                        className="w-full px-3 py-2 text-black border border-gray-300 rounded-md focus:outline-[#F6931B] focus:ring-[#F6931B] focus:border-[#F6931B]"
-                        required
-                      ></textarea>
-                    </div>
-      
-                    {/* Preferred Contact Method */}
-                    <div>
-                      <label className="block text-sm font-medium text-black mb-2">
-                        Preferred Contact Method
-                      </label>
-                      <div className="flex flex-wrap gap-3">
-                        {[
-                          { name: "preferred_contact", value: "Email", label: "Email" },
-                          { name: "preferred_contact", value: "Phone", label: "Phone" },
-                          { name: "preferred_contact", value: "WhatsApp", label: "WhatsApp" }
-                        ].map((option) => (
-                          <label key={option.value} className="flex items-center gap-2">
-                            <input
-                              type="checkbox"
-                              name={option.name}
-                              value={option.value}
-                              onChange={handleCheckboxChange}
-                              checked={formData.preferred_contact.includes(option.value)}
-                              className="
-                                appearance-none h-5 w-5 rounded border-2 border-gray-300 
-                                checked:bg-[#F6931B] checked:border-[#F6931B] relative transition-colors duration-200
-                                before:content-[''] before:absolute before:left-1/2 before:top-1/2 before:w-2 before:h-3 
-                                before:border-r-2 before:border-b-2 before:border-white before:transform 
-                                before:-translate-x-1/2 before:-translate-y-1/2 before:rotate-45 before:opacity-0 
-                                checked:before:opacity-100"
+                        
+                        {/* Contact Info - Stacked vertically */}
+                        <div className="space-y-4">
+                        <h3 className="text-lg font-medium">Visit us:</h3>
+                        
+                        <div className="flex items-center gap-3">
+                            <Image 
+                            src="/website.png"
+                            alt="Website Icon"
+                            width={24}
+                            height={24}
                             />
-                            <span className="text-black text-sm md:text-base">{option.label}</span>
-                          </label>
-                        ))}
-                      </div>
+                            <a href="https://www.tekjuice.co.uk" className="text-base">
+                            www.tekjuice.co.uk
+                            </a>
+                        </div>
+                
+                        <div className="flex items-center gap-3">
+                            <Image 
+                            src="/telephone.png"
+                            alt="Phone Icon"
+                            width={24}
+                            height={24}
+                            />
+                            <a href="tel:+447974810717" className="text-base">
+                            +44 7974 810717
+                            </a>
+                        </div>
+                
+                        <div className="flex items-center gap-3">
+                            <Image 
+                            src="/email.png"
+                            alt="Email Icon"
+                            width={24}
+                            height={24}
+                            />
+                            <a href="mailto:info@tekjuice.co.uk" className="text-base">
+                            info@tekjuice.co.uk
+                            </a>
+                        </div>
+                        </div>
                     </div>
-      
-                    {/* Submit Button */}
-                    <div className="pt-2">
-                      <button
-                        type="submit"
-                        disabled={loading}
-                        className="w-full bg-[#F6931B] text-black px-4 py-3 rounded-md hover:bg-black hover:text-[#F6931B] transition-colors"
-                      >
-                        {loading ? "Submitting..." : "Submit"}
-                      </button>
+                
+                    {/* Right Side: Form - Full width on mobile, appears after content */}
+                    <div className="w-full lg:w-1/2 p-4 sm:p-8 bg-white order-first lg:order-last">
+                        <h2 className="text-2xl sm:text-3xl text-black font-bold mb-6">Give Us Your Details</h2>
+                        {success ? (
+                        <p className="text-green-600 font-bold text-center">
+                            ✅ Your Details have been submitted! We'll contact you soon. Reload page to submit another enquiry.
+                        </p>
+                        ) : (
+                        <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+                            {/* Name */}
+                            <div>
+                            <label className="block text-sm font-medium text-black mb-1">
+                                Name
+                            </label>
+                            <input
+                                type="text"
+                                name="name"
+                                placeholder="Enter Your full name"
+                                onChange={handleChange}
+                                className="w-full px-3 py-2 border border-gray-300 text-black rounded-md focus:outline-[#F6931B] focus:ring-[#F6931B] focus:border-[#F6931B]"
+                                required
+                            />
+                            </div>
+            
+                            {/* Primary Email */}
+                            <div>
+                            <label className="block text-sm font-medium text-black mb-1">
+                                Primary Email 
+                            </label>
+                            <input
+                                type="email"
+                                name="email1"
+                                placeholder="Enter Primary Email"
+                                onChange={handleChange}
+                                className="w-full px-3 py-2 text-black border border-gray-300 rounded-md focus:outline-[#F6931B] focus:ring-[#F6931B] focus:border-[#F6931B]"
+                                required
+                            />
+                            </div>
+            
+                            {/* Secondary Email */}
+                            <div>
+                            <label className="block text-sm font-medium text-black mb-1">
+                                Secondary Email (if applicable)
+                            </label>
+                            <input
+                                type="email"
+                                name="email2"
+                                placeholder="Enter Your Secondary Email"
+                                onChange={handleChange}
+                                className="w-full px-3 py-2 text-black border border-gray-300 rounded-md focus:outline-[#F6931B] focus:ring-[#F6931B] focus:border-[#F6931B]"
+                            />
+                            </div>
+            
+                            {/* Phone Number */}
+                            <div>
+                            <label className="block text-sm font-medium text-black mb-1">Contact</label>
+                            <PhoneInput
+                                international
+                                defaultCountry="UG"
+                                value={formData.contact}
+                                onChange={handlePhoneChange}
+                                placeholder="Enter Phone Number"
+                                className="
+                                    w-full p-2 border-2 border-gray-300 rounded-lg placeholder-[#F6931B]
+                                    text-black focus:outline-none focus:ring-2 focus:ring-[#F6931B] 
+                                    focus:border-[#F6931B] hover:border-[#F6931B] transition-colors"
+                                style={{
+                                '--PhoneInputCountryFlag-height': '1em',
+                                '--PhoneInputCountryFlag-width': '1.5em',
+                                '--PhoneInputCountrySelectArrow-color': '#F6931B',
+                                }}
+                                required
+                            />
+                            </div>
+            
+                            {/* Whatsapp Number */}
+                            <div>
+                            <label className="block text-sm font-medium text-black mb-1">Whatsapp</label>
+                            <PhoneInput
+                                international
+                                defaultCountry="UG"
+                                value={formData.whatsapp}
+                                onChange={handleWhatsappChange}
+                                placeholder="Enter Whatsapp Number"
+                                className="
+                                    w-full p-2 border-2 border-gray-300 rounded-lg placeholder-[#F6931B]
+                                    text-black focus:outline-none focus:ring-2 focus:ring-[#F6931B] 
+                                    focus:border-[#F6931B] hover:border-[#F6931B] transition-colors"
+                                style={{
+                                '--PhoneInputCountryFlag-height': '1em',
+                                '--PhoneInputCountryFlag-width': '1.5em',
+                                '--PhoneInputCountrySelectArrow-color': '#F6931B',
+                                }}
+                                required
+                            />
+                            </div>
+            
+                            {/* Skills */}
+                            <div>
+                            <label className="block text-sm font-medium text-black mb-1">
+                                Skills
+                            </label>
+                            <textarea
+                                id="skills"
+                                name="skills"
+                                placeholder="Enter Your Skills"
+                                onChange={handleChange}
+                                rows={4}
+                                className="w-full px-3 py-2 text-black border border-gray-300 rounded-md focus:outline-[#F6931B] focus:ring-[#F6931B] focus:border-[#F6931B]"
+                                required
+                            ></textarea>
+                            </div>
+            
+                            {/* Preferred Contact Method */}
+                            <div>
+                                <label className="block text-sm font-medium text-black mb-2">
+                                    Preferred Contact Method
+                                </label>
+                                <div className="flex flex-wrap gap-3">
+                                    {[
+                                    { name: "preferred_contact", value: "Email", label: "Email" },
+                                    { name: "preferred_contact", value: "Phone", label: "Phone" },
+                                    { name: "preferred_contact", value: "WhatsApp", label: "WhatsApp" }
+                                    ].map((option) => (
+                                    <label key={option.value} className="flex items-center gap-2">
+                                        <input
+                                        type="checkbox"
+                                        name={option.name}
+                                        value={option.value}
+                                        onChange={handleCheckboxChange}
+                                        checked={formData.preferred_contact.includes(option.value)}
+                                        className="
+                                            appearance-none h-5 w-5 rounded border-2 border-gray-300 
+                                            checked:bg-[#F6931B] checked:border-[#F6931B] relative transition-colors duration-200
+                                            before:content-[''] before:absolute before:left-1/2 before:top-1/2 before:w-2 before:h-3 
+                                            before:border-r-2 before:border-b-2 before:border-white before:transform 
+                                            before:-translate-x-1/2 before:-translate-y-1/2 before:rotate-45 before:opacity-0 
+                                            checked:before:opacity-100"
+                                        />
+                                        <span className="text-black text-sm md:text-base">{option.label}</span>
+                                    </label>
+                                    ))}
+                                </div>
+                            </div>
+            
+                            {/* Submit Button */}
+                            <div className="pt-2">
+                            <button
+                                type="submit"
+                                disabled={loading}
+                                className="w-full bg-[#F6931B] text-black px-4 py-3 rounded-md hover:bg-black hover:text-[#F6931B] transition-colors"
+                            >
+                                {loading ? "Submitting..." : "Submit"}
+                            </button>
+                            </div>
+                        </form>
+                        )}
                     </div>
-                  </form>
-                )}
-              </div>
-            </div>
+                </div>
           </div>
           <Footer />
         </div>
