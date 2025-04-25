@@ -1,447 +1,509 @@
-//page that collects enquiries from talents.
-
 "use client";
 
-import { useEffect, useState } from "react";
-import Navbar from "@/app/components/navbar";
-import Footer from "@/app/components/footer";
-import Image from "next/image";
-//import { allCountries } from 'country-telephone-data';
+import { useState, useRef, useEffect } from "react";
+import Navbar from "../components/navbar";
+import Footer from "../components/footer";
 import PhoneInput, { Value } from 'react-phone-number-input';
 import 'react-phone-number-input/style.css';
-  
+import { validateEmail, validatePassword } from '../lib/validator';
 
-export default function Enquiry() {
-    
-    //this interface defines the types of the data being submitted.
-    interface formData {
-        name: string;
-        email1: string;
-        email2: string;
-        contact: string;
-        whatsapp: string;
-        skills: string;
-        preferred_contact: string[];
-    }
-    
-    const [formData, setFormData] = useState<formData>({
+export default function TalentDashboard() {
+    // State for form data
+    const [formData, setFormData] = useState({
         name: "",
         email1: "",
-        email2: "",
+        email2: "NIL", // Default value for hidden field
+        password: "",
+        repeat_password: "",
         contact: "",
-        whatsapp: "",
-        skills: "",
-        preferred_contact: [],
+        whatsapp: "NIL", // Default value for hidden field
+        skills: ["NIL"], // Default value for hidden field
+        preferred_contact: ["NIL"], // Default value for hidden field
     });
+
 
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState("");
-    const [otherService, setOtherService] = useState(""); // State for "Other" input in Services
-    const [otherKnowUs, setOtherKnowUs] = useState(""); // State for "Other" input in Know Us
+    const [progress, setProgress] = useState(100);
+    const [showPassword, setShowPassword] = useState(false);
+    const [ showConfirmation, setShowConfirmation ] = useState(false);
 
-    //validate names
+    // Add state for skills dropdown
+    //const [isSkillsDropdownOpen, setIsSkillsDropdownOpen] = useState(false);
+    //const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
+    //const dropdownRef = useRef<HTMLDivElement>(null);
+
+    // List of available skills
+    /* const availableSkills = [
+        "JavaScript", "TypeScript", "React", "Next.js", "Node.js",
+        "Python", "Django", "Flask", "Java", "Spring Boot",
+        "C#", ".NET", "PHP", "Laravel", "Vue.js",
+        "Angular", "Ruby", "Ruby on Rails", "SQL", "MongoDB",
+        "AWS", "Azure", "Docker", "Kubernetes", "DevOps",
+        "Mobile Development", "iOS", "Android", "React Native",
+        "UI/UX Design", "HTML", "CSS", "Tailwind CSS", "Bootstrap",
+        "GraphQL", "REST API", "Microservices", "Git", "CI/CD"
+    ]; */
+
+
+
+    // Add useEffect for success message timeout
+    useEffect(() => {
+        let timer: NodeJS.Timeout;
+        let progressTimer: NodeJS.Timeout;
+        
+        if (success) {
+            setProgress(100);
+            //setShowConfirmation(false); //ensuers the modal closes when success shows
+            progressTimer = setInterval(() => {
+                setProgress(prev => Math.max(0, prev - 1));
+            }, 100);
+            
+            timer = setTimeout(() => {
+                setSuccess(false);
+                setProgress(100);
+            }, 10000);
+        }
+        
+        return () => {
+            clearTimeout(timer);
+            clearInterval(progressTimer);
+        };
+    }, [success]);
+
+    // Handle click outside to close dropdown
+    /* useEffect(() => {
+        function handleClickOutside(event: MouseEvent) {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+                setIsSkillsDropdownOpen(false);
+            }
+        }
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []); */
+
+    // Handle skill selection
+    /* const handleSkillToggle = (skill: string) => {
+        setSelectedSkills(prev => {
+            const newSkills = prev.includes(skill)
+                ? prev.filter(s => s !== skill)
+                : [...prev, skill];
+            
+            // Update formData with the new skills array
+            setFormData(prevForm => ({
+                ...prevForm,
+                skills: newSkills  // Directly use the array
+            }));
+
+            return newSkills;
+        });
+    }; */
+
+    // Validate names
     const validateName = (name: string): boolean => {
-        const regex = /^[A-Za-z\s]+$/; //allows letters and spaces
-        return regex.test(name);
+        const regex = /^[A-Za-z\s]+$/; // allows letters and spaces
+        return regex.test(name) && name.length >= 4;
     };
 
-    //validate email
-    const validateEmail1 = (email1: string): boolean => {
-        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Basic email format validation
-        return regex.test(email1);
-    }
-    //validate email
-    const validateEmail2 = (email2: string): boolean => {
-        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Basic email format validation
-        return regex.test(email2);
-    }
-
-    //add state for selected dial code
-    const handlePhoneChange = (value: Value) =>{
+    // Handle phone number change
+    const handlePhoneChange = (value: Value) => {
         setFormData({ ...formData, contact: value || "" });
     };
 
-    //add state for selected dial code for whatsapp
-    const handleWhatsappChange = (value: Value) =>{
+    // Handle whatsapp number change
+    const handleWhatsappChange = (value: Value) => {
         setFormData({ ...formData, whatsapp: value || "" });
-    }
+    };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const {name, value } = e.target;
-        //update name validation
-        if(name === "name") {
-            if(!validateName(value)) {
+        const { name, value } = e.target;
+        // Update name validation
+        if (name === "name") {
+            if (!validateName(value)) {
                 setError("Names should only contain letters and spaces.");
                 return;
             }
         }
-        //update primary email1
-        if (name === "email") {
-            if(!validateEmail1(value)) {
-                setError("Please enter a valid email address.")
-                return;
-            }
-        }
-        
-        // Secondary email2 validation (only if provided)
-        if (name === "email2" && value) {  // Only validate if there's a value
-            if (!validateEmail2(value)) {
-                setError("Please enter a valid secondary email address.");
+        // Update primary email1
+        if (name === "email1") {
+            const emailValidation = validateEmail(value);
+            if (!emailValidation.isValid) {
+                setError(emailValidation.error || "Invalid email format");
                 return;
             }
         }
 
         setFormData({ ...formData, [name]: value });
-        setError("");//clear any previous errors.
+        setError(""); // Clear any previous errors
     };
 
     const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value, checked } = e.target;
-        // Restrict `name` to only the keys that are arrays
         if (name === "preferred_contact") {
-            setFormData((prevState) => {
-                const currentArray = prevState[name]; // No need for type assertion now
-                return {
-                    ...prevState,
-                    [name]: checked
-                        ? [...currentArray, value] // Add the value to the array
-                        : currentArray.filter((item) => item !== value), // Remove the value from the array
-                };
-            });
+            setFormData(prevState => ({
+                ...prevState,
+                [name]: checked
+                    ? [...prevState.preferred_contact, value]
+                    : prevState.preferred_contact.filter(item => item !== value),
+            }));
         }
     };
 
-    const handleSubmit = async (e: React.FormEvent) => {
+    //first confirmation handle
+    const handleSubmitConfirmation = (e: React.FormEvent) => {
+        e.preventDefault();
+        
+        //validate name
+        if (formData.name.length < 4) {
+            setError("Name must be at least 4 characters long");
+            return;
+        }
+        if (!formData.contact) {
+            setError("contact number is required")
+            return;
+        }
+
+        // Validate form 
+        const primaryEmailValidation = validateEmail(formData.email1);
+        if (!primaryEmailValidation.isValid) {
+            setError(primaryEmailValidation.error || "Invalid primary email format");
+            return;
+        }
+
+    
+        //validate password
+        if (formData.password !== formData.repeat_password) {
+            setError("Passwords do not match");
+            setLoading(false);
+            return;
+        }
+        try {
+            const passwordValidation = validatePassword(formData.password, formData.email1);
+        if (!passwordValidation.isValid) {
+            setError(passwordValidation.error || "Invalid password format");
+                setLoading(false);
+                return;
+            }
+        }   catch (error) {
+            setError("An unexpected error occurred while validating the password.");
+            setLoading(false);
+            return;
+        }
+    
+        // If validation passes, show confirmation
+        setShowConfirmation(true);
+    };
+
+    const handleSubmitFinal = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
         setError("");
-
+        
         try {
             const res = await fetch("/api/talent", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({
-                    ...formData,
-                    //contact: `${dialCode}${formData.contact}`, //combines dial code and contact
-                    //services: updatedServices, //send the object instead of an array.
-                    //know_us: updatedKnowUs,
-                }),
+                body: JSON.stringify(formData),
             });
 
             const data = await res.json();
-            if (!res.ok) throw new Error(data.error || "Something went wrong");
+            if (!res.ok) throw new Error(data.error);
 
+            //clear form data
+            setFormData({
+                name: "",
+                email1: "",
+                email2: "NIL",
+                password: "",
+                repeat_password: "",
+                contact: "",
+                whatsapp: "NIL",
+                skills: ["NIL"],
+                preferred_contact: ["NIL"],      
+            });
+
+            setShowConfirmation(false); //closes the modal first
             setSuccess(true);
         } catch (err) {
-            if (err instanceof Error) {//set instance of error
+            if (err instanceof Error) {
                 setError(err.message);
             } else {
-                setError("An unexpected error occured.");
+                setError("An unexpected error occurred.");
             }
         } finally {
             setLoading(false);
         }
     };
 
-    return (
-        <div className="min-h-screen bg-[#F9FAFB] pt-20">
-          <Navbar />
-          <div className="max-w-6xl w-full mx-auto px-4 sm:px-6 py-8">
-                {/* Stack content vertically on mobile */}
-                <div className="flex flex-col lg:flex-row gap-8">
-                    {/* Left Side: Text Content - Full width on mobile */}
-                    <div className="w-full lg:w-1/2 p-4 sm:p-8 bg-[#F9FAFB] text-black">
-                        <h1 className="text-2xl sm:text-3xl text-[#F6931B] font-bold mb-6">Welcome to Tek Juice!</h1>
-                        <p className="mb-6 text-lg sm:text-xl leading-relaxed">
-                        We create opportunities through technology by offering strategic consultancy and talent solutions 
-                        that empower businesses to scale efficiently.
-                        </p>
-                    
-                        <h2 className="text-xl text-[#F6931B] font-semibold mb-4">Our Services:</h2>
-                        
-                        <ul className="list-none mb-6 space-y-6">
-                            {/* Tek Talent Africa */}
-                            <li>
-                                <div className="flex flex-col sm:flex-row items-start gap-4">
-                                <div className="flex-shrink-0">
-                                    <Image 
-                                    src="/talent.svg"
-                                    alt="Talent Icon"
-                                    width={60}
-                                    height={60}
-                                    className="text-white"
-                                    />
-                                </div>
-                                <div>
-                                    <h3 className="text-lg text-[#F6931B] font-semibold mb-2">Tek Talent Africa</h3>
-                                    <p className="text-base">
-                                    A premier platform connecting global businesses with top African tech talent. 
-                                    We source, vet, and place skilled professionals through our African offices, 
-                                    ensuring world-class quality and global readiness.
-                                    </p>
-                                </div>
-                                </div>
-                            </li>
-            
-                            {/* Outsourcing Tech Teams */}
-                            <li>
-                                <div className="flex flex-col sm:flex-row items-start gap-4">
-                                <div className="flex-shrink-0">
-                                    <Image 
-                                    src="/outsourcing.svg"
-                                    alt="Outsourcing Icon"
-                                    width={60}
-                                    height={60}
-                                    className="text-white"
-                                    />
-                                </div>
-                                <div>
-                                    <h3 className="text-lg text-[#F6931B] font-semibold mb-2">Outsourcing Tech Teams</h3>
-                                    <p className="text-base">
-                                    We help companies build, manage, and scale remote tech teams by providing 
-                                    dedicated developers, engineers, and IT specialists tailored to your business needs. 
-                                    Whether you need a full tech team or specific expertise, we handle recruitment, 
-                                    onboarding, and management to ensure seamless operations.
-                                    </p>
-                                </div>
-                                </div>
-                            </li>
-            
-                            {/* Managed Support Services */}
-                            <li>
-                                <div className="flex flex-col sm:flex-row items-start gap-4">
-                                <div className="flex-shrink-0">
-                                    <Image 
-                                    src="/support.svg"
-                                    alt="Support Icon"
-                                    width={60}
-                                    height={60}
-                                    className="text-white"
-                                    />
-                                </div>
-                                <div>
-                                    <h3 className="text-lg text-[#F6931B] font-semibold mb-2">Managed Support Services</h3>
-                                    <p className="text-base">
-                                    We offer ongoing technical and IT support to help businesses maintain their digital infrastructure. 
-                                    Our managed support includes system monitoring, troubleshooting, software updates, cybersecurity, 
-                                    and round-the-clock technical assistance, ensuring business continuity and efficiency.
-                                    </p>
-                                </div>
-                                </div>
-                            </li>
-                        </ul>
-            
-                        <p className="mb-6 text-lg leading-relaxed">
-                        Submit your enquiry, and our team will get back to you within 24-48 hours!
-                        </p>
-                        
-                        {/* Contact Info - Stacked vertically */}
-                        <div className="space-y-4">
-                        <h3 className="text-lg font-medium">Visit us:</h3>
-                        
-                        <div className="flex items-center gap-3">
-                            <Image 
-                            src="/website.png"
-                            alt="Website Icon"
-                            width={24}
-                            height={24}
-                            />
-                            <a href="https://www.tekjuice.co.uk" className="text-base">
-                            www.tekjuice.co.uk
-                            </a>
-                        </div>
-                
-                        <div className="flex items-center gap-3">
-                            <Image 
-                            src="/telephone.png"
-                            alt="Phone Icon"
-                            width={24}
-                            height={24}
-                            />
-                            <a href="tel:+447974810717" className="text-base">
-                            +44 7974 810717
-                            </a>
-                        </div>
-                
-                        <div className="flex items-center gap-3">
-                            <Image 
-                            src="/email.png"
-                            alt="Email Icon"
-                            width={24}
-                            height={24}
-                            />
-                            <a href="mailto:info@tekjuice.co.uk" className="text-base">
-                            info@tekjuice.co.uk
-                            </a>
-                        </div>
-                        </div>
-                    </div>
-                
-                    {/* Right Side: Form - Full width on mobile, appears after content */}
-                    <div className="w-full lg:w-1/2 p-4 sm:p-8 bg-white order-first lg:order-last">
-                        <h2 className="text-2xl sm:text-3xl text-black font-bold mb-6">Give Us Your Details</h2>
-                        {success ? (
-                        <p className="text-green-600 font-bold text-center">
-                            ✅ Your Details have been submitted! We'll contact you soon. Reload page to submit another enquiry.
-                        </p>
-                        ) : (
-                        <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
-                            {/* Name */}
-                            <div>
-                            <label className="block text-sm font-medium text-black mb-1">
-                                Name
-                            </label>
-                            <input
-                                type="text"
-                                name="name"
-                                placeholder="Enter Your full name"
-                                onChange={handleChange}
-                                className="w-full px-3 py-2 border border-gray-300 text-black rounded-md focus:outline-[#F6931B] focus:ring-[#F6931B] focus:border-[#F6931B]"
-                                required
-                            />
-                            </div>
-            
-                            {/* Primary Email */}
-                            <div>
-                            <label className="block text-sm font-medium text-black mb-1">
-                                Primary Email 
-                            </label>
-                            <input
-                                type="email"
-                                name="email1"
-                                placeholder="Enter Primary Email"
-                                onChange={handleChange}
-                                className="w-full px-3 py-2 text-black border border-gray-300 rounded-md focus:outline-[#F6931B] focus:ring-[#F6931B] focus:border-[#F6931B]"
-                                required
-                            />
-                            </div>
-            
-                            {/* Secondary Email */}
-                            <div>
-                            <label className="block text-sm font-medium text-black mb-1">
-                                Secondary Email (if applicable)
-                            </label>
-                            <input
-                                type="email"
-                                name="email2"
-                                placeholder="Enter Your Secondary Email"
-                                onChange={handleChange}
-                                className="w-full px-3 py-2 text-black border border-gray-300 rounded-md focus:outline-[#F6931B] focus:ring-[#F6931B] focus:border-[#F6931B]"
-                            />
-                            </div>
-            
-                            {/* Phone Number */}
-                            <div>
-                            <label className="block text-sm font-medium text-black mb-1">Contact</label>
-                            <PhoneInput
-                                international
-                                defaultCountry="UG"
-                                value={formData.contact}
-                                onChange={handlePhoneChange}
-                                placeholder="Enter Phone Number"
-                                className="
-                                    w-full p-2 border-2 border-gray-300 rounded-lg placeholder-[#F6931B]
-                                    text-black focus:outline-none focus:ring-2 focus:ring-[#F6931B] 
-                                    focus:border-[#F6931B] hover:border-[#F6931B] transition-colors"
-                                style={{
-                                '--PhoneInputCountryFlag-height': '1em',
-                                '--PhoneInputCountryFlag-width': '1.5em',
-                                '--PhoneInputCountrySelectArrow-color': '#F6931B',
-                                }}
-                                required
-                            />
-                            </div>
-            
-                            {/* Whatsapp Number */}
-                            <div>
-                            <label className="block text-sm font-medium text-black mb-1">Whatsapp</label>
-                            <PhoneInput
-                                international
-                                defaultCountry="UG"
-                                value={formData.whatsapp}
-                                onChange={handleWhatsappChange}
-                                placeholder="Enter Whatsapp Number"
-                                className="
-                                    w-full p-2 border-2 border-gray-300 rounded-lg placeholder-[#F6931B]
-                                    text-black focus:outline-none focus:ring-2 focus:ring-[#F6931B] 
-                                    focus:border-[#F6931B] hover:border-[#F6931B] transition-colors"
-                                style={{
-                                '--PhoneInputCountryFlag-height': '1em',
-                                '--PhoneInputCountryFlag-width': '1.5em',
-                                '--PhoneInputCountrySelectArrow-color': '#F6931B',
-                                }}
-                                required
-                            />
-                            </div>
-            
-                            {/* Skills */}
-                            <div>
-                            <label className="block text-sm font-medium text-black mb-1">
-                                Skills
-                            </label>
-                            <textarea
-                                id="skills"
-                                name="skills"
-                                placeholder="Enter Your Skills"
-                                onChange={handleChange}
-                                rows={4}
-                                className="w-full px-3 py-2 text-black border border-gray-300 rounded-md focus:outline-[#F6931B] focus:ring-[#F6931B] focus:border-[#F6931B]"
-                                required
-                            ></textarea>
-                            </div>
-            
-                            {/* Preferred Contact Method */}
-                            <div>
-                                <label className="block text-sm font-medium text-black mb-2">
-                                    Preferred Contact Method
-                                </label>
-                                <div className="flex flex-wrap gap-3">
-                                    {[
-                                    { name: "preferred_contact", value: "Email", label: "Email" },
-                                    { name: "preferred_contact", value: "Phone", label: "Phone" },
-                                    { name: "preferred_contact", value: "WhatsApp", label: "WhatsApp" }
-                                    ].map((option) => (
-                                    <label key={option.value} className="flex items-center gap-2">
-                                        <input
-                                        type="checkbox"
-                                        name={option.name}
-                                        value={option.value}
-                                        onChange={handleCheckboxChange}
-                                        checked={formData.preferred_contact.includes(option.value)}
-                                        className="
-                                            appearance-none h-5 w-5 rounded border-2 border-gray-300 
-                                            checked:bg-[#F6931B] checked:border-[#F6931B] relative transition-colors duration-200
-                                            before:content-[''] before:absolute before:left-1/2 before:top-1/2 before:w-2 before:h-3 
-                                            before:border-r-2 before:border-b-2 before:border-white before:transform 
-                                            before:-translate-x-1/2 before:-translate-y-1/2 before:rotate-45 before:opacity-0 
-                                            checked:before:opacity-100"
-                                        />
-                                        <span className="text-black text-sm md:text-base">{option.label}</span>
-                                    </label>
-                                    ))}
-                                </div>
-                            </div>
-            
-                            {/* Submit Button */}
-                            <div className="pt-2">
-                            <button
-                                type="submit"
-                                disabled={loading}
-                                className="w-full bg-[#F6931B] text-black px-4 py-3 rounded-md hover:bg-black hover:text-[#F6931B] transition-colors"
+    // Update the skills section in the form render
+    /* const renderSkillsField = () => (
+        <div className="relative" ref={dropdownRef}>
+            <label className="block text-sm font-medium text-black mb-1">
+                Skills
+            </label>
+            <div
+                className="w-full px-3 py-2 text-black border border-gray-300 rounded-md focus:outline-[#F6931B] focus:ring-[#F6931B] focus:border-[#F6931B] cursor-pointer min-h-[42px]"
+                onClick={() => setIsSkillsDropdownOpen(!isSkillsDropdownOpen)}
+            >
+                {selectedSkills.length > 0 ? (
+                    <div className="flex flex-wrap gap-2">
+                        {selectedSkills.map(skill => (
+                            <span
+                                key={skill}
+                                className="bg-[#F6931B] text-black px-2 py-1 rounded-md text-sm flex items-center gap-1"
                             >
-                                {loading ? "Submitting..." : "Submit"}
-                            </button>
+                                {skill}
+                                <button
+                                    type="button"
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        handleSkillToggle(skill);
+                                    }}
+                                    className="hover:text-red-600"
+                                >
+                                    ×
+                                </button>
+                            </span>
+                        ))}
+                    </div>
+                ) : (
+                    <span className="text-gray-500">Select your skills</span>
+                )}
+            </div>
+            {isSkillsDropdownOpen && (
+                <div className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-y-auto">
+                    <div className="p-2">
+                        {availableSkills.map(skill => (
+                            <div
+                                key={skill}
+                                className={`px-3 py-2 cursor-pointer rounded-md text-black ${
+                                    selectedSkills.includes(skill)
+                                        ? 'bg-[#F6931B] text-black'
+                                        : 'hover:bg-gray-100'
+                                }`}
+                                onClick={() => handleSkillToggle(skill)}
+                            >
+                                {skill}
                             </div>
-                        </form>
-                        )}
+                        ))}
                     </div>
                 </div>
-          </div>
-          <Footer />
+            )}
         </div>
-      );
+    ); */
+
+    // Render different sections based on activeSection
+    return (
+        <div className="min-h-screen flex flex-col bg-gray-50">
+            <Navbar />
+            
+            <main className="flex-grow">
+                <div className="max-w-md mx-auto px-4 py-8">
+                    <div className="bg-white rounded-xl shadow-lg overflow-hidden mt-20">
+                        <div className="p-6 sm:p-8">
+                            <div className="text-center mb-8">
+                                <h1 className="text-2xl font-bold text-gray-900">Join Our Talent Network</h1>
+                                <p className="text-gray-600 mt-2">Fill in your basic details to get started</p>
+                            </div>
+
+                            {/* Success Message */}
+                            {success && (
+                                <div className="mb-6 p-4 bg-green-50 text-green-700 rounded-lg flex items-center">
+                                    <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                                    </svg>
+                                    <span>Your details have been submitted successfully!</span>
+                                </div>
+                            )}
+
+                            {/* Error Message */}
+                            {error && (
+                                <div className="mb-6 p-4 bg-red-50 text-red-700 rounded-lg flex items-center">
+                                    <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                                    </svg>
+                                    <span>{error}</span>
+                                </div>
+                            )}
+
+                            <form onSubmit={handleSubmitConfirmation} className="space-y-5">
+                                {/* Name Field */}
+                                <div>
+                                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+                                        Full Name
+                                    </label>
+                                    <input
+                                        id="name"
+                                        type="text"
+                                        name="name"
+                                        onChange={handleChange}
+                                        placeholder="John Doe"
+                                        className="w-full text-black px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F6931B] focus:border-[#F6931B] transition"
+                                        required
+                                    />
+                                    <p className="mt-1 text-xs text-gray-500">Minimum 4 characters, letters only</p>
+                                </div>
+
+                                {/* Email Field */}
+                                <div>
+                                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                                        Email Address
+                                    </label>
+                                    <input
+                                        id="email"
+                                        type="email"
+                                        name="email1"
+                                        onChange={handleChange}
+                                        placeholder="john@example.com"
+                                        className="w-full text-black  px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F6931B] focus:border-[#F6931B] transition"
+                                        required
+                                    />
+                                </div>
+
+                                {/* Password Field */}
+                                <div>
+                                    <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+                                        Password
+                                    </label>
+                                    <div className="relative">
+                                        <input
+                                            id="password"
+                                            type={showPassword ? "text" : "password"}
+                                            name="password"
+                                            onChange={handleChange}
+                                            className="w-full text-black px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F6931B] focus:border-[#F6931B] transition pr-12"
+                                            required
+                                        />
+                                        <button
+                                            type="button"
+                                            onClick={() => setShowPassword(!showPassword)}
+                                            className="absolute right-3 top-3.5 text-gray-500 hover:text-[#F6931B]"
+                                        >
+                                            {showPassword ? (
+                                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
+                                                </svg>
+                                            ) : (
+                                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                                </svg>
+                                            )}
+                                        </button>
+                                    </div>
+                                </div>
+
+                                {/* Repeat Password Field */}
+                                <div>
+                                    <label htmlFor="repeat_password" className="block text-sm font-medium text-gray-700 mb-1">
+                                        Repeat Password
+                                    </label>
+                                    <input
+                                        id="repeat_password"
+                                        type={showPassword ? "text" : "password"}
+                                        name="repeat_password"
+                                        onChange={handleChange}
+                                        className="w-full text-black px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F6931B] focus:border-[#F6931B] transition"
+                                        required
+                                    />
+                                </div>
+
+                                {/* Contact Field */}
+                                <div>
+                                    <label htmlFor="contact" className="block text-sm font-medium text-gray-700 mb-1">
+                                        Phone Number
+                                    </label>
+                                    <PhoneInput
+                                        international
+                                        defaultCountry="UG"
+                                        value={formData.contact}
+                                        onChange={handlePhoneChange}
+                                        id="contact"
+                                        className="w-full text-black p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F6931B] focus:border-[#F6931B] transition"
+                                        style={{
+                                            '--PhoneInputCountryFlag-height': '1em',
+                                            '--PhoneInputCountryFlag-width': '1.5em',
+                                            '--PhoneInputCountrySelectArrow-color': '#F6931B',
+                                        }}
+                                        required
+                                    />
+                                </div>
+
+                                {/* Submit Button */}
+                                <button
+                                    type="submit"
+                                    disabled={loading}
+                                    className="w-full py-3 px-4 bg-[#F6931B] text-white font-medium rounded-lg hover:bg-[#e07d0a] focus:outline-none focus:ring-2 focus:ring-[#F6931B] focus:ring-offset-2 transition disabled:opacity-70 disabled:cursor-not-allowed"
+                                >
+                                    {loading ? (
+                                        <span className="flex items-center justify-center">
+                                            <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                            </svg>
+                                            Processing...
+                                        </span>
+                                    ) : (
+                                        "Join Waitlist"
+                                    )}
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Confirmation Modal */}
+                {showConfirmation && !success && (
+                    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+                        <div className="bg-white rounded-xl shadow-xl max-w-md w-full overflow-hidden">
+                            <div className="p-6">
+                                <h2 className="text-xl font-bold text-gray-900 mb-4">Confirm Your Details</h2>
+                                
+                                <div className="space-y-4 mb-6">
+                                    <div>
+                                        <p className="text-sm font-medium text-gray-500">Full Name</p>
+                                        <p className="text-gray-900">{formData.name}</p>
+                                    </div>
+                                    <div>
+                                        <p className="text-sm font-medium text-gray-500">Email</p>
+                                        <p className="text-gray-900">{formData.email1}</p>
+                                    </div>
+                                    <div>
+                                        <p className="text-sm font-medium text-gray-500">Phone Number</p>
+                                        <p className="text-gray-900">{formData.contact}</p>
+                                    </div>
+                                </div>
+
+                                <div className="flex justify-end gap-3">
+                                    <button
+                                        onClick={() => setShowConfirmation(false)}
+                                        className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#F6931B] transition"
+                                    >
+                                        Cancel
+                                    </button>
+                                    <button
+                                        onClick={handleSubmitFinal}
+                                        disabled={loading}
+                                        className="px-4 py-2 text-sm font-medium text-white bg-[#F6931B] rounded-lg hover:bg-[#e07d0a] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#F6931B] transition disabled:opacity-70 disabled:cursor-not-allowed"
+                                    >
+                                        Confirm Submission
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )}
+            </main>
+
+            <Footer />
+        </div>
+    );
 }
+
 

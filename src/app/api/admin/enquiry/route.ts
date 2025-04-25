@@ -1,4 +1,4 @@
-//This file handles data retrieval from db to display to admin dashboard
+//This file handles data retrieval from enquiry table db to display to admin dashboard
 
 import { NextResponse } from "next/server";
 import { db } from "../../../lib/db";

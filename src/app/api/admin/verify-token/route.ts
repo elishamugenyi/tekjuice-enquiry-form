@@ -1,4 +1,4 @@
-// src/api/admin/verify-token.ts Hnadles token validation and logins admin
+// src/api/admin/verify-token.ts Handles token validation and logins admin
 
 import { NextRequest, NextResponse } from 'next/server';
 import jwt from 'jsonwebtoken';
